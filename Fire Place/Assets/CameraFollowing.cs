@@ -20,6 +20,8 @@ public class CameraFollowing : MonoBehaviour
     void Update()
     {
 
+		//Debug.Log(transform.lo)
+
 		transform.position = player.transform.position + anchorPoint;
     }
 }
