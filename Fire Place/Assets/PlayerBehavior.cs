@@ -7,14 +7,6 @@ public class PlayerBehavior : MonoBehaviour
 	public float acceleration = 2f;
 	public float maxVelocity = 8.5f;
 	public float gravityScale = 1;
-	public float iceDamage = 1;
-
-	private bool takingDamage = true;
-	public bool isTakingDamage() { return takingDamage; }
-	public void setTakingDamage(bool val) { takingDamage = val; }
-
-	private float health = 100;
-	public float getHealth() { return health; }
 
 	private float extraGravity = 0;
 
@@ -38,41 +30,29 @@ public class PlayerBehavior : MonoBehaviour
 		if (Vector3.Magnitude(rgbd.velocity) <= maxVelocity)                                //se a velocidade não é máxima
 		{
 			if (Input.GetKey(KeyCode.LeftArrow))                                                     //Adiciona força de acordo com
-				rgbd.AddForce(new Vector3(-1, 0, 0) * acceleration, ForceMode.Force);           //o eixo de input
+				rgbd.AddForce(new Vector3(1, 0, 0) * acceleration, ForceMode.Force);           //o eixo de input
 
 			if (Input.GetKey(KeyCode.RightArrow))
-				rgbd.AddForce(new Vector3(1, 0, 0) * acceleration, ForceMode.Force);
+				rgbd.AddForce(new Vector3(-1, 0, 0) * acceleration, ForceMode.Force);
 
 			if (Input.GetKey(KeyCode.UpArrow))
-				rgbd.AddForce(new Vector3(0, 0, 1) * acceleration, ForceMode.Force);
+				rgbd.AddForce(new Vector3(0, 0, -1) * acceleration, ForceMode.Force);
 
 			if (Input.GetKey(KeyCode.DownArrow))
-				rgbd.AddForce(new Vector3(0, 0, -1) * acceleration, ForceMode.Force);
+				rgbd.AddForce(new Vector3(0, 0, 1) * acceleration, ForceMode.Force);
 		}
 
 		//ROTATION----------------------------------------------------------------------------------
-		/*float yAngle = Vector3.Angle(new Vector3(rgbd.velocity.x, 0, 0), new Vector3(0, 0, rgbd.velocity.z));
+		Vector3 projection = new Vector3(rgbd.velocity.x, 0, rgbd.velocity.z);
+		float yAngle = Vector3.Angle(projection, new Vector3(1, 0, 0));
 
-		transform.eulerAngles = new Vector3(0, yAngle, 0);*/
-
-
-
-		//ICE DAMAGE-------------------------------------------------------------------------------
-
-		if (takingDamage)
+		if (Vector3.Magnitude(rgbd.velocity) > 1)
 		{
-			if (health > 40)
-				health -= 3 * iceDamage / 100;
+			if (rgbd.velocity.z > 0)
+				transform.eulerAngles = new Vector3(0, -yAngle, 0);
 			else
-				health -= iceDamage / 100;
-
+				transform.eulerAngles = new Vector3(0, yAngle, 0);
 		}
-		else if (health < 100)
-			health += 5 * iceDamage / 100;
-
-		if (health <= 0)
-			Debug.Log("Dead");
-
 
 		if (Input.GetKey(KeyCode.R))
 		{
@@ -80,18 +60,5 @@ public class PlayerBehavior : MonoBehaviour
 			transform.position = new Vector3(42, 9, 22);
 		}
 
-		Debug.Log("Health = " + health);
-	}
-
-	void OnTriggerEnter(Collider other)
-	{
-		if (other.tag == "Fire")
-			takingDamage = false;
-	}
-
-	void OnTriggerExit(Collider other)
-	{
-		if (other.tag == "Fire")
-			takingDamage = true;
 	}
 }
