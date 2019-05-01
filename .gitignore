@@ -34,3 +34,7 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+# Rider
+Fire Place/Assets/Plugins/
+Fire Place/Assets/Plugins.meta
