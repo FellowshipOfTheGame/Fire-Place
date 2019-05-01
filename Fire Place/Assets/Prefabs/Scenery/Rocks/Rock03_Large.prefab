@@ -201,7 +201,7 @@ LODGroup:
   m_AnimateCrossFading: 1
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.20080827
+  - screenRelativeHeight: 0.10108804
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 1137594116791305358}
@@ -220,7 +220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8382557823906717936}
   m_Layer: 0
-  m_Name: Rock01_Medium (1)
+  m_Name: Rock03_Large
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
