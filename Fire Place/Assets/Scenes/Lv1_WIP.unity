@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1364897039}
-  m_IndirectSpecularColor: {r: 0.08768267, g: 0.11374129, b: 0.15496652, a: 1}
+  m_IndirectSpecularColor: {r: 0.08762105, g: 0.11366024, b: 0.15485564, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -823,7 +823,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 2e28db4a061ff8e46951ec407964faa5, type: 3}
 --- !u!4 &270053905 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 7052992004097652669, guid: 2e28db4a061ff8e46951ec407964faa5,
+  m_CorrespondingSourceObject: {fileID: 191258735841341801, guid: 2e28db4a061ff8e46951ec407964faa5,
     type: 3}
   m_PrefabInstance: {fileID: 270053904}
   m_PrefabAsset: {fileID: 0}
@@ -2630,7 +2630,7 @@ MonoBehaviour:
     m_Bits: 256
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 1
-  antialiasingMode: 0
+  antialiasingMode: 1
   temporalAntialiasing:
     jitterSpread: 0.75
     sharpness: 0.25
