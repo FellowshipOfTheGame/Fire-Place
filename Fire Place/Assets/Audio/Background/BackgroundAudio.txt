@@ -1,0 +1,4 @@
+Background wind audio generated using:
+https://mynoise.net/NoiseMachines/windNoiseGenerator.php
+Which uses https://freesound.org/people/Glaneur%20de%20sons/sounds/104952/ and https://freesound.org/people/Benboncan/sounds/84111/
+Under CC-BY liscense.
