@@ -2,6 +2,7 @@
   "dependencies": {
     "com.unity.ads": "2.0.8",
     "com.unity.analytics": "3.2.2",
+    "com.unity.cinemachine": "2.2.8",
     "com.unity.collab-proxy": "1.2.15",
     "com.unity.package-manager-ui": "2.0.7",
     "com.unity.postprocessing": "2.1.4",
@@ -18,6 +19,7 @@
     "com.unity.modules.jsonserialize": "1.0.0",
     "com.unity.modules.particlesystem": "1.0.0",
     "com.unity.modules.physics": "1.0.0",
+    "com.unity.modules.physics2d": "1.0.0",
     "com.unity.modules.screencapture": "1.0.0",
     "com.unity.modules.terrain": "1.0.0",
     "com.unity.modules.terrainphysics": "1.0.0",
