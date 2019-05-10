@@ -16,6 +16,8 @@ ModelImporter:
     100020: Background_MFrontLT
     100022: Background_MFrontRB
     100024: Background_MFrontRT
+    100026: Level_01_a
+    100028: Level_01_a_corner_bl
     400000: Background_LOD0
     400002: Background_LOD1
     400004: Level_01
@@ -29,6 +31,8 @@ ModelImporter:
     400020: Background_MFrontLT
     400022: Background_MFrontRB
     400024: Background_MFrontRT
+    400026: Level_01_a
+    400028: Level_01_a_corner_bl
     2100000: Snow
     2100002: Rock
     2300000: Background_LOD0
@@ -43,6 +47,8 @@ ModelImporter:
     2300018: Background_MFrontLT
     2300020: Background_MFrontRB
     2300022: Background_MFrontRT
+    2300024: Level_01_a
+    2300026: Level_01_a_corner_bl
     3300000: Background_LOD0
     3300002: Background_LOD1
     3300004: Level_01
@@ -55,6 +61,8 @@ ModelImporter:
     3300018: Background_MFrontLT
     3300020: Background_MFrontRB
     3300022: Background_MFrontRT
+    3300024: Level_01_a
+    3300026: Level_01_a_corner_bl
     4300000: Level_01
     4300002: Background_LOD1
     4300004: Background_LOD0
@@ -67,6 +75,8 @@ ModelImporter:
     4300018: Background_MFrontLB
     4300020: Background_MFrontRT
     4300022: Background_MFrontRB
+    4300024: Level_01_a_corner_bl
+    4300026: Level_01_a
     7400000: Default Take
     9500000: //RootNode
     20500000: //RootNode
