@@ -18,6 +18,7 @@ ModelImporter:
     100024: Background_MFrontRT
     100026: Level_01_a
     100028: Level_01_a_corner_bl
+    100030: Level_01_a_back
     400000: Background_LOD0
     400002: Background_LOD1
     400004: Level_01
@@ -33,6 +34,7 @@ ModelImporter:
     400024: Background_MFrontRT
     400026: Level_01_a
     400028: Level_01_a_corner_bl
+    400030: Level_01_a_back
     2100000: Snow
     2100002: Rock
     2300000: Background_LOD0
@@ -49,6 +51,7 @@ ModelImporter:
     2300022: Background_MFrontRT
     2300024: Level_01_a
     2300026: Level_01_a_corner_bl
+    2300028: Level_01_a_back
     3300000: Background_LOD0
     3300002: Background_LOD1
     3300004: Level_01
@@ -63,6 +66,7 @@ ModelImporter:
     3300022: Background_MFrontRT
     3300024: Level_01_a
     3300026: Level_01_a_corner_bl
+    3300028: Level_01_a_back
     4300000: Level_01
     4300002: Background_LOD1
     4300004: Background_LOD0
@@ -77,6 +81,7 @@ ModelImporter:
     4300022: Background_MFrontRB
     4300024: Level_01_a_corner_bl
     4300026: Level_01_a
+    4300028: Level_01_a_back
     7400000: Default Take
     9500000: //RootNode
     20500000: //RootNode
@@ -114,7 +119,7 @@ ModelImporter:
     - 0.25
     - 0.01
     globalScale: 1
-    meshCompression: 3
+    meshCompression: 2
     addColliders: 0
     useSRGBMaterialColor: 1
     importVisibility: 1

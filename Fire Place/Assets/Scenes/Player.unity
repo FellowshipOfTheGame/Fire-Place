@@ -594,7 +594,7 @@ MonoBehaviour:
     m_Bits: 256
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 1
-  antialiasingMode: 0
+  antialiasingMode: 1
   temporalAntialiasing:
     jitterSpread: 0.75
     sharpness: 0.25
@@ -857,7 +857,7 @@ PrefabInstance:
     - target: {fileID: 1991327956771987735, guid: 77270d1d169f3d74c89f57b5f61b5b7c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.65
+      value: 1.78
       objectReference: {fileID: 0}
     - target: {fileID: 1991327956771987735, guid: 77270d1d169f3d74c89f57b5f61b5b7c,
         type: 3}
@@ -903,11 +903,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1991327956771987728, guid: 77270d1d169f3d74c89f57b5f61b5b7c,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77270d1d169f3d74c89f57b5f61b5b7c, type: 3}
