@@ -19,6 +19,11 @@ ModelImporter:
     100026: Level_01_a
     100028: Level_01_a_corner_bl
     100030: Level_01_a_back
+    100032: Level_01_a_end
+    100034: Level_01_a_top
+    100036: Level_01_b
+    100038: Level_01_b_back
+    100040: Level_01_b_top
     400000: Background_LOD0
     400002: Background_LOD1
     400004: Level_01
@@ -35,6 +40,11 @@ ModelImporter:
     400026: Level_01_a
     400028: Level_01_a_corner_bl
     400030: Level_01_a_back
+    400032: Level_01_a_end
+    400034: Level_01_a_top
+    400036: Level_01_b
+    400038: Level_01_b_back
+    400040: Level_01_b_top
     2100000: Snow
     2100002: Rock
     2300000: Background_LOD0
@@ -52,6 +62,11 @@ ModelImporter:
     2300024: Level_01_a
     2300026: Level_01_a_corner_bl
     2300028: Level_01_a_back
+    2300030: Level_01_a_end
+    2300032: Level_01_a_top
+    2300034: Level_01_b
+    2300036: Level_01_b_back
+    2300038: Level_01_b_top
     3300000: Background_LOD0
     3300002: Background_LOD1
     3300004: Level_01
@@ -67,6 +82,11 @@ ModelImporter:
     3300024: Level_01_a
     3300026: Level_01_a_corner_bl
     3300028: Level_01_a_back
+    3300030: Level_01_a_end
+    3300032: Level_01_a_top
+    3300034: Level_01_b
+    3300036: Level_01_b_back
+    3300038: Level_01_b_top
     4300000: Level_01
     4300002: Background_LOD1
     4300004: Background_LOD0
@@ -82,6 +102,11 @@ ModelImporter:
     4300024: Level_01_a_corner_bl
     4300026: Level_01_a
     4300028: Level_01_a_back
+    4300030: Level_01_a_end
+    4300032: Level_01_a_top
+    4300034: Level_01_b
+    4300036: Level_01_b_top
+    4300038: Level_01_b_back
     7400000: Default Take
     9500000: //RootNode
     20500000: //RootNode
