@@ -815,10 +815,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1383762946}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a97be4acbf74084485b882ecfa91a5c, type: 3}
+  m_Script: {fileID: 11500000, guid: f4e3f4892b1a15840a7d8c507370aa01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tipo: 1
+  acao: 0
   addictive: 1
   sceneName: TestField2
 --- !u!65 &1383762948
@@ -841,7 +841,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1383762946}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
