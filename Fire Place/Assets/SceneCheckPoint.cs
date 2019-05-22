@@ -46,8 +46,9 @@ public class SceneCheckPoint : MonoBehaviour
 
 				if (!addictive)
 				{
-					lights.SetActive(false);
+//					lights.SetActive(false);
 					SceneManager.LoadScene(path, LoadSceneMode.Single);
+					lights.SetActive(false);
 				}
 
 				else if (!sceneIsActive)
