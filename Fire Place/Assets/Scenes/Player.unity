@@ -909,5 +909,10 @@ PrefabInstance:
       propertyPath: iceDamage
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1991327956771987728, guid: 77270d1d169f3d74c89f57b5f61b5b7c,
+        type: 3}
+      propertyPath: maxVelocity
+      value: 2.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77270d1d169f3d74c89f57b5f61b5b7c, type: 3}
