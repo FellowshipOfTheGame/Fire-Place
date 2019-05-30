@@ -1,6 +1,6 @@
 
 
-![FirePlace Logo](https://github.com/FellowshipOfTheGame/Fire-Place/tree/master/Fire%20Place/Assets/UI/Logo.png)
+![FirePlace Logo](https://github.com/FellowshipOfTheGame/Fire-Place/blob/master/Fire%20Place/Assets/UI/Logo.png)
 
 ---
 
