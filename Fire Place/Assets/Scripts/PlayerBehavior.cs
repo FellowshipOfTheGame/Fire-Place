@@ -9,6 +9,7 @@ public class PlayerBehavior : MonoBehaviour
 	private States state;
 	public void setState(States state) { this.state = state; }
 	public States getState() { return state; }
+	[SerializeField] private Animator anim;
 
 	public float acceleration = 2f;
 	public float maxVelocity = 8.5f;
@@ -42,16 +43,27 @@ public class PlayerBehavior : MonoBehaviour
 				//MOVEMENT INPUT---------------------------------------------------------------------------
 				if (Vector3.Magnitude(rgbd.velocity) <= maxVelocity)                                //se a velocidade não é máxima
 				{
-
+					
 					float horAxis = Input.GetAxis("Horizontal");
 					float verAxis = Input.GetAxis("Vertical");
 
+					
 					if (horAxis != 0)                                                     //Adiciona força de acordo com
 						rgbd.AddForce(mainCamera.right * Mathf.Sign(horAxis) * acceleration, ForceMode.Force);           //o eixo de input
 
 					if (verAxis != 0)
 						rgbd.AddForce(mainCamera.forward * Mathf.Sign(verAxis) * acceleration, ForceMode.Force);
 				}
+
+				if(Vector3.Magnitude(new Vector3(rgbd.velocity.x, 0,rgbd.velocity.z)) >= 0.5f)
+				{
+					anim.SetBool("isWalking", true);
+				}
+				else
+				{
+					anim.SetBool("isWalking", false);
+				}
+
 
 				break;
 		}
