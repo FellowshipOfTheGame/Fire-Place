@@ -15,19 +15,11 @@ public class SceneCheckPoint : MonoBehaviour
 
 	public string sceneName = "";
 
-	private string path;
-
-	// Start is called before the first frame update
-	void Start()
-	{
-		path = "Assets/Scenes/" + sceneName + ".unity";
-	}
-
 	void OnTriggerEnter(Collider other)
 	{
 		Scene[] activeScenes;
 
-		GameObject lights = GameObject.Find("Directional Light");
+		//GameObject lights = GameObject.Find("Directional Light");
 
 		bool sceneIsActive = false;
 
@@ -47,14 +39,14 @@ public class SceneCheckPoint : MonoBehaviour
 				if (!addictive)
 				{
 //					lights.SetActive(false);
-					SceneManager.LoadScene(path, LoadSceneMode.Single);
-					lights.SetActive(false);
+					SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+					//lights.SetActive(false);
 				}
 
 				else if (!sceneIsActive)
 				{
-					lights.SetActive(false);
-					SceneManager.LoadScene(path, LoadSceneMode.Additive);
+					//lights.SetActive(false);
+					SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
 				}
 			}
 
@@ -63,7 +55,7 @@ public class SceneCheckPoint : MonoBehaviour
 				if (sceneIsActive)
 				{
 					//Debug.Log("Entra");
-					SceneManager.UnloadScene(path);
+					SceneManager.UnloadSceneAsync(sceneName);
 					//SceneManager.LoadScene(path, LoadSceneMode.Additive);
 				}
 
