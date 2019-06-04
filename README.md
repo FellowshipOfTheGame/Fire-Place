@@ -1,6 +1,6 @@
 
 
-![FirePlace Logo](https://github.com/FellowshipOfTheGame/Fire-Place/tree/master/Fire%20Place/Assets/UI/Logo.png)
+![FirePlace Logo](https://github.com/FellowshipOfTheGame/Fire-Place/blob/master/Fire%20Place/Assets/UI/Logo.png)
 
 ---
 
@@ -25,4 +25,4 @@ FirePlace is an immersive experience focusing on ambience, exploration, investig
 - The following animations were obtained from Mixamo:
   - Player walk animation. 
 - The following sound effects were used:
-  - https://freesound.org/people/Benboncan/sounds/84111/ (Modified for creating the blizzard sound)
+- https://freesound.org/people/Benboncan/sounds/84111/ (Modified for creating the blizzard sound)
