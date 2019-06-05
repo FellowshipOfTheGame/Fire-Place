@@ -35,10 +35,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Game/Loading.unity
     guid: 286e6cfe6a609a34c8233cde01ae9539
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Dev/Test Field.unity
     guid: 7d46ea2e1b1adfd4e8b79bb5db9be6fb
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Dev/TestField2.unity
     guid: fd5e8765f001ca14da29d1c1c9a60447
   m_configObjects: {}
