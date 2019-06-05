@@ -152,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acao: 0
   addictive: 1
-  sceneName: Lv2-3_WIP
+  sceneName: Lv3_WIP
 --- !u!65 &11106964
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -562,7 +562,7 @@ MonoBehaviour:
   textJogar: {fileID: 991967008}
   textContinuar: {fileID: 1427216523}
   textOpcoes: {fileID: 1504842863}
-  textSair: {fileID: 1504842863}
+  textSair: {fileID: 805967311}
   logo: {fileID: 234884698}
   fadeSpeed: 0.005
   firstLevel: Lv1_WIP
