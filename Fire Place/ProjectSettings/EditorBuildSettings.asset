@@ -6,6 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Game/StartGame.unity
+    guid: 9808eb276df7f6c4b99131532d54654c
+  - enabled: 1
+    path: Assets/Scenes/Game/Scenery.unity
+    guid: 6859390866315624caaa2eec18019cbf
+  - enabled: 1
+    path: Assets/Scenes/Game/Player.unity
+    guid: dce7017ba9062fbf3ae37809cf577008
+  - enabled: 1
+    path: Assets/Scenes/Game/Menu.unity
+    guid: 4ae10d4f93f9b7c43ab873dc2520f7a5
+  - enabled: 1
     path: Assets/Scenes/Game/Lv1_WIP.unity
     guid: 9344c677702bc094d96b1f757cbed094
   - enabled: 1
@@ -23,12 +35,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Game/Loading.unity
     guid: 286e6cfe6a609a34c8233cde01ae9539
-  - enabled: 1
-    path: Assets/Scenes/Game/Player.unity
-    guid: dce7017ba9062fbf3ae37809cf577008
-  - enabled: 1
-    path: Assets/Scenes/Game/Scenery.unity
-    guid: 6859390866315624caaa2eec18019cbf
   - enabled: 1
     path: Assets/Scenes/Dev/Test Field.unity
     guid: 7d46ea2e1b1adfd4e8b79bb5db9be6fb
