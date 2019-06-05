@@ -40,7 +40,7 @@ public class ActivateNote : MonoBehaviour
 				{
 					//Debug.Log("Entra");
 					showing = true;
-					player.GetComponent<PlayerBehavior>().setState(PlayerBehavior.States.Lendo);
+					player.GetComponent<PlayerBehaviour>().setState(PlayerBehaviour.States.Lendo);
 
 					noteOnCanvas.GetComponentInChildren<Image>().sprite = noteImage;
 					noteOnCanvas.GetComponentInChildren<Text>().text = noteText;
@@ -56,7 +56,7 @@ public class ActivateNote : MonoBehaviour
 				{
 					//Debug.Log("Sai");
 					showing = false;
-					player.GetComponent<PlayerBehavior>().setState(PlayerBehavior.States.Default);
+					player.GetComponent<PlayerBehaviour>().setState(PlayerBehaviour.States.Default);
 
 					noteOnCanvas.GetComponentInChildren<Image>().enabled = false;
 					noteOnCanvas.GetComponentInChildren<Text>().enabled = false;

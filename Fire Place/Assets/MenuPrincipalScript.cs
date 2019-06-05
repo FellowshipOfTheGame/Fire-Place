@@ -7,13 +7,15 @@ public class MenuPrincipalScript : MonoBehaviour
 {
 	public Material BlackPlaneMaterial;
 
-	public GameObject btnJogar, btnContinuar, textJogar, textContinuar;
+	public GameObject btnJogar, btnContinuar, btnOpcoes, btnSair;
+	public GameObject textJogar, textContinuar, textOpcoes, textSair;
+	public GameObject logo;
 
 	public float fadeSpeed = 1f;
 
 	private bool fadding = false;
 
-	private Color curColorBlack, curColorWhite, curColorGray;
+	private Color curButtonColor, curTextColor, curColorWhite, curColorBlack;
 
 	float startTime;
 
@@ -22,9 +24,11 @@ public class MenuPrincipalScript : MonoBehaviour
     {
 		BlackPlaneMaterial.SetColor("_BaseColor", Color.black);
 
+		curButtonColor = btnJogar.GetComponent<Image>().color;
+		curTextColor = textJogar.GetComponent<Text>().color;
+
 		curColorBlack = Color.black;
 		curColorWhite = Color.white;
-		curColorGray = textJogar.GetComponent<Text>().color;
 	}
 
     // Update is called once per frame
@@ -34,15 +38,26 @@ public class MenuPrincipalScript : MonoBehaviour
 		if (fadding)
 		{
 			t = (Time.time - startTime) * fadeSpeed;
+
+			curButtonColor = Color.Lerp(curButtonColor, Color.clear, t);
+			curTextColor = Color.Lerp(curTextColor, Color.clear, t);
+
 			curColorBlack = Color.Lerp(curColorBlack, Color.clear, t);
 			curColorWhite = Color.Lerp(curColorWhite, Color.clear, t);
-			curColorGray = Color.Lerp(curColorGray, Color.clear, t);
 
 			BlackPlaneMaterial.SetColor("_BaseColor", curColorBlack);
-			btnJogar.GetComponent<Image>().color = curColorWhite;
-			btnContinuar.GetComponent<Image>().color = curColorWhite;
-			textJogar.GetComponent<Text>().color = curColorGray;
-			textContinuar.GetComponent<Text>().color = curColorGray;
+
+			btnJogar.GetComponent<Image>().color = curButtonColor;
+			btnContinuar.GetComponent<Image>().color = curButtonColor;
+			btnOpcoes.GetComponent<Image>().color = curButtonColor;
+			btnSair.GetComponent<Image>().color = curButtonColor;
+
+			textJogar.GetComponent<Text>().color = curTextColor;
+			textContinuar.GetComponent<Text>().color = curTextColor;
+			textOpcoes.GetComponent<Text>().color = curTextColor;
+			textSair.GetComponent<Text>().color = curTextColor;
+
+			logo.GetComponent<Image>().color = curColorWhite;
 
 			if(curColorWhite.a < 0.1)
 			{
@@ -56,6 +71,23 @@ public class MenuPrincipalScript : MonoBehaviour
 	{
 		fadding = true;
 		startTime = Time.time;
+		
+		GameObject player = GameObject.FindWithTag("Player");
+		player.GetComponent<PlayerBehaviour>().enabled = true;
+
+		btnJogar.GetComponent<Button>().interactable = false;
+		btnContinuar.GetComponent<Button>().interactable = false;
+		btnOpcoes.GetComponent<Button>().interactable = false;
+		btnSair.GetComponent<Button>().interactable = false;
+
+	}
+
+	public void QuitGame()
+	{
+
+		Debug.Log("Application.Quit();");
+		Application.Quit();
+
 	}
 
 
