@@ -11,11 +11,8 @@ public class PlayerBehaviour : MonoBehaviour
 	public States getState() { return state; }
 	[SerializeField] private Animator anim = null;
 
-	public float acceleration = 2f;
-	public float maxVelocity = 8.5f;
+	public float velocity = 8.5f;
 	public float gravityScale = 1;
-
-	private float extraGravity = 0;
 
 	private Transform mainCamera;
 
@@ -26,8 +23,6 @@ public class PlayerBehaviour : MonoBehaviour
     {
 
 		mainCamera = Camera.main.transform;
-
-		extraGravity = gravityScale - 1;
 		rgbd = GetComponent<Rigidbody>();
 
 		state = States.Default;
@@ -41,21 +36,23 @@ public class PlayerBehaviour : MonoBehaviour
 			case States.Default:
 
 				//MOVEMENT INPUT---------------------------------------------------------------------------
-				if (Vector3.Magnitude(rgbd.velocity) <= maxVelocity)                                //se a velocidade não é máxima
-				{
-					
-					float horAxis = Input.GetAxis("Horizontal");
-					float verAxis = Input.GetAxis("Vertical");
-					
-					if (horAxis != 0)                                                     //Adiciona força de acordo com
-						rgbd.AddForce(mainCamera.right * Mathf.Sign(horAxis) * acceleration, ForceMode.Force);           //o eixo de input
+				float horAxis = Input.GetAxis("Horizontal");
+				float verAxis = Input.GetAxis("Vertical");
 
-					if (verAxis != 0)
-						rgbd.AddForce(mainCamera.forward * Mathf.Sign(verAxis) * acceleration, ForceMode.Force);
+				float yVel = rgbd.velocity.y;
+
+				rgbd.velocity = (mainCamera.right * horAxis * velocity) 
+				              + (mainCamera.forward * verAxis * velocity);
+
+				rgbd.velocity = new Vector3(rgbd.velocity.x, yVel, rgbd.velocity.z);
+
+				if(rgbd.useGravity) {
+
+					rgbd.velocity += Physics.gravity * Time.deltaTime;
 
 				}
 
-				if(Vector3.Magnitude(new Vector2(rgbd.velocity.x,rgbd.velocity.z)) >= 0.5f)
+				if(new Vector2(rgbd.velocity.x, rgbd.velocity.z).magnitude >= 0.5f)
 				{
 					anim.SetBool("isWalking", true);
 				}
@@ -67,11 +64,6 @@ public class PlayerBehaviour : MonoBehaviour
 
 				break;
 		}
-
-		
-		//GRAVITY SCALE----------------------------------------------------------------------------
-		extraGravity = gravityScale - 1;							//adiciona gravidade extra
-		rgbd.AddForce(Physics.gravity * extraGravity);
 
 
 		//ROTATION----------------------------------------------------------------------------------

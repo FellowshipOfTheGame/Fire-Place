@@ -564,7 +564,7 @@ MonoBehaviour:
   textOpcoes: {fileID: 1504842863}
   textSair: {fileID: 805967311}
   logo: {fileID: 234884698}
-  fadeSpeed: 0.005
+  fadeSpeed: 0.01
   firstLevel: Lv1_WIP
   menuCamera: {fileID: 1029174721}
   startVirtualCameraName: GameStartVCamera
@@ -1637,8 +1637,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1845861630}
   - component: {fileID: 1845861629}
-  - component: {fileID: 1845861628}
   - component: {fileID: 1845861627}
+  - component: {fileID: 1845861628}
   m_Layer: 9
   m_Name: Campfire Camera
   m_TagString: Untagged
