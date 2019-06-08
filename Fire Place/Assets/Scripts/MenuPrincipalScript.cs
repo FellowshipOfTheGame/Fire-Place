@@ -13,7 +13,7 @@ public class MenuPrincipalScript : MonoBehaviour
 	public Text textJogar, textContinuar, textOpcoes, textSair;
 	public Image logo;
 
-	public float fadeSpeed = 1f;
+	public float fadeSpeed = 0.01f;
 
 	private bool fadding = false;
 
@@ -24,7 +24,7 @@ public class MenuPrincipalScript : MonoBehaviour
 	[SerializeField] private CinemachineVirtualCamera menuCamera = null;
     [SerializeField] private string startVirtualCameraName = "GameStartVCamera";
 
-	public float switchCameraDelay = 5f;
+	public float switchCameraDelay = 10f;
 
 	private float startTime;
 

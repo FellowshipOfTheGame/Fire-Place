@@ -41,9 +41,9 @@ public class PLRDeathBehavior : MonoBehaviour
 			transform.position = lastFirePos;
 			health = 100;
 		}
-			Debug.Log("Dead");
+		
 
-		Debug.Log("Health = " + health);
+		// Debug.Log("Health = " + health);
 	}
 
 	void OnTriggerEnter(Collider other)

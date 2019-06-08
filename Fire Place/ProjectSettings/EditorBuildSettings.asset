@@ -32,9 +32,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game/Lv3_WIP.unity
     guid: ebc5fc22342f9e44396fad4d6fcb4bb0
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Game/LvF_WIP.unity
     guid: 9e4f26f4a30bf474b96d682777f94da1
+<<<<<<< HEAD
   - enabled: 0
     path: Assets/Scenes/Game/Loading.unity
     guid: 286e6cfe6a609a34c8233cde01ae9539
@@ -44,4 +45,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Dev/TestField2.unity
     guid: fd5e8765f001ca14da29d1c1c9a60447
+=======
+>>>>>>> 3e922b18b9c5de02829fa4289b639dc551413b04
   m_configObjects: {}
