@@ -18,6 +18,8 @@ public class PlayerBehaviour : MonoBehaviour
 
 	private Rigidbody rgbd;
 
+	public Transform cameraFollowPoint = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,10 +43,9 @@ public class PlayerBehaviour : MonoBehaviour
 
 				float yVel = rgbd.velocity.y;
 
-				rgbd.velocity = (mainCamera.right * horAxis * velocity) 
-				              + (mainCamera.forward * verAxis * velocity);
+				Vector3 dir = ((mainCamera.right * horAxis) + (mainCamera.forward * verAxis)).normalized;
 
-				rgbd.velocity = new Vector3(rgbd.velocity.x, yVel, rgbd.velocity.z);
+				rgbd.velocity = new Vector3(dir.x  * velocity, yVel, dir.z * velocity);
 
 				if(rgbd.useGravity) {
 

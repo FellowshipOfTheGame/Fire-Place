@@ -20,8 +20,11 @@ public class SetupToFollowPlayer : MonoBehaviour
         GameObject player = Finder.FindRootObject(PlayerSceneName, PlayerTag);
         if (player)
         {
-            virtualCamera.Follow = player.transform;
-            virtualCamera.LookAt = player.transform;
+
+            Transform followPoint = player.GetComponent<PlayerBehaviour>().cameraFollowPoint;
+
+            virtualCamera.Follow = followPoint;
+            virtualCamera.LookAt = followPoint;
         }
     }
 }

@@ -25,12 +25,17 @@ public class MenuPrincipalScript : MonoBehaviour
     [SerializeField] private string startVirtualCameraName = "GameStartVCamera";
 
 	public float switchCameraDelay = 10f;
+	public float giveControlDelay = 5f;
 
 	private float startTime;
 
     // Start is called before the first frame update
     void Start()
     {
+
+		Cursor.visible = true;
+		Cursor.lockState = CursorLockMode.None;
+
 		BlackPlaneMaterial.SetColor("_BaseColor", Color.black);
 
 		curButtonColor = btnJogar.GetComponent<Image>().color;
@@ -42,6 +47,9 @@ public class MenuPrincipalScript : MonoBehaviour
 
 	public void StartNewGame()
 	{
+
+		Cursor.visible = false;
+		Cursor.lockState = CursorLockMode.Locked;
 
 		// Disables the menu buttons.
 		btnJogar.GetComponent<Button>().interactable = false;
@@ -64,34 +72,11 @@ public class MenuPrincipalScript : MonoBehaviour
 		// When the level is done loading, starts fading to the scene.
 		StartCoroutine(Fading());
 		startTime = Time.time;
-
-		// Enables the Player.
-		GameObject player = GameObject.FindWithTag("Player");
-		player.GetComponent<PlayerBehaviour>().enabled = true;
-		player.GetComponent<Rigidbody>().useGravity = true;
 		
 		// Start switching camera.
 		StartCoroutine(SwitchCamera());
 
 	}
-
-	private IEnumerator SwitchCamera () 
-    {
-
-		// Waits for delay and changes the camera.
-        float time = 0;
-
-        while(time < switchCameraDelay) 
-        {
-            time += Time.fixedDeltaTime;
-            yield return new WaitForFixedUpdate();
-        }
-
-		// Switch cameras.
-        menuCamera.gameObject.SetActive(false);
-        GameObject.Find(startVirtualCameraName).GetComponent<CinemachineVirtualCamera>().enabled = true;
-
-    }
 
 	// Fades between the menu screen and the level.
 	private IEnumerator Fading()
@@ -137,6 +122,48 @@ public class MenuPrincipalScript : MonoBehaviour
 		btnSair.gameObject.SetActive(false);
 
 		logo.gameObject.SetActive(false);
+
+	}
+
+	private IEnumerator SwitchCamera () 
+    {
+
+		// Waits for delay and changes the camera.
+        float time = 0;
+
+        while(time < switchCameraDelay) 
+        {
+            time += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+
+		// Plays the stand up animation.
+		GameObject player = GameObject.FindWithTag("Player");
+		player.GetComponentInChildren<Animator>().SetBool("isSeated", false);
+
+		StartCoroutine(GiveControl(player));
+
+
+		// Switch cameras.
+        menuCamera.gameObject.SetActive(false);
+        GameObject.Find(startVirtualCameraName).GetComponent<CinemachineVirtualCamera>().enabled = true;
+
+    }
+
+	private IEnumerator GiveControl(GameObject player) {
+
+		// Waits for delay and enables the player.
+        float time = 0;
+
+        while(time < giveControlDelay) 
+        {
+            time += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+
+		// Enables the Player.
+		player.GetComponent<PlayerBehaviour>().enabled = true;
+		player.GetComponent<Rigidbody>().useGravity = true;
 
 	}
 
