@@ -10,13 +10,18 @@ public class ActivateNote : MonoBehaviour
 	public GameObject noteOnCanvas;
 
 	public Sprite noteImage;
-	public string noteText;
+	//public string noteText;
 	//public Text test;
 
 	private bool showing = false;
 	public bool isShowing() { return showing; }
-	private bool inRange = false;
+	private bool inRange = false, popping = false;
 	public GameObject player;
+
+	public float fadeSpeed = 10f;
+	float startTime;
+
+	public Vector3 curScale;
 
 	void Start()
 	{
@@ -26,7 +31,9 @@ public class ActivateNote : MonoBehaviour
 		MainCamera = Camera.main.gameObject;
 
 		noteOnCanvas.GetComponentInChildren<Image>().enabled = false;
-		noteOnCanvas.GetComponentInChildren<Text>().enabled = false;
+		noteOnCanvas.GetComponentInChildren<RectTransform>().localScale = Vector3.zero;
+		curScale = Vector3.zero;
+		//noteOnCanvas.GetComponentInChildren<Text>().enabled = false;
 
 	}
 	void Update()
@@ -40,13 +47,15 @@ public class ActivateNote : MonoBehaviour
 				{
 					//Debug.Log("Entra");
 					showing = true;
+					popping = true;
+					startTime = Time.time;
 					player.GetComponent<PlayerBehavior>().setState(PlayerBehavior.States.Lendo);
 
 					noteOnCanvas.GetComponentInChildren<Image>().sprite = noteImage;
-					noteOnCanvas.GetComponentInChildren<Text>().text = noteText;
+					//noteOnCanvas.GetComponentInChildren<Text>().text = noteText;
 
 					noteOnCanvas.GetComponentInChildren<Image>().enabled = true;
-					noteOnCanvas.GetComponentInChildren<Text>().enabled = true;
+					//noteOnCanvas.GetComponentInChildren<Text>().enabled = true;
 
 
 				}
@@ -56,13 +65,61 @@ public class ActivateNote : MonoBehaviour
 				{
 					//Debug.Log("Sai");
 					showing = false;
+					popping = true;
+					startTime = Time.time;
 					player.GetComponent<PlayerBehavior>().setState(PlayerBehavior.States.Default);
 
-					noteOnCanvas.GetComponentInChildren<Image>().enabled = false;
-					noteOnCanvas.GetComponentInChildren<Text>().enabled = false;
+//					noteOnCanvas.GetComponentInChildren<Image>().enabled = false;
+					//noteOnCanvas.GetComponentInChildren<Text>().enabled = false;
 				}
 			}
-		}	
+		}
+
+		float t;
+		if (popping)
+		{
+			t = (Time.time - startTime) * fadeSpeed;
+
+			Debug.Log("curScale = " + curScale);
+			if (showing)
+			{
+				curScale = Vector3.Lerp(Vector3.zero, Vector3.one, t);
+				if (curScale.x > 0.95f)
+				{
+					Debug.Log("entra");
+					curScale = Vector3.one;
+					popping = false;
+				}
+			}
+			else
+			{
+
+				Debug.Log("roda");
+				curScale = Vector3.Lerp(Vector3.one, Vector3.zero, t);
+				if (curScale.x < 0.05f)
+				{
+
+					Debug.Log("entra (curScale = " + curScale + ")");
+					curScale = Vector3.zero;
+					popping = false;
+					noteOnCanvas.GetComponentInChildren<Image>().enabled = false;
+				}
+			}
+
+			noteOnCanvas.GetComponentInChildren<RectTransform>().localScale = curScale;
+			//curScale = Color.Lerp(curColo, Color.clear, t);
+			//curColorWhite = Color.Lerp(curColorWhite, Color.clear, t);
+
+			//BlackPlaneMaterial.SetColor("_BaseColor", curColorBlack);
+			//textJogar.GetComponent<Text>().color = curColorWhite;
+
+			/*if (curScale.x.a < 0.1)
+			{
+				popping = false;
+				blackPanel.SetActive(false);
+				textJogar.SetActive(false);
+			}*/
+		}
 	}
 
 	void OnTriggerEnter(Collider other)
