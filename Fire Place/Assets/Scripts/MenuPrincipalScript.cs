@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using Cinemachine;
 
@@ -9,6 +10,7 @@ public class MenuPrincipalScript : MonoBehaviour
 {
 	public Material BlackPlaneMaterial;
 
+	public EventSystem eventSys;
 	public Image btnJogar, btnContinuar, btnOpcoes, btnSair;
 	public Text textJogar, textContinuar, textOpcoes, textSair;
 	public Image logo;
@@ -32,6 +34,8 @@ public class MenuPrincipalScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+		eventSys.SetSelectedGameObject(btnJogar.gameObject);
 
 		Cursor.visible = true;
 		Cursor.lockState = CursorLockMode.None;

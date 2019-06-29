@@ -52,7 +52,7 @@ public class ActivateNote : MonoBehaviour
 				}
 			}
 			else {
-				if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.E))
+				if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Use"))
 				{
 					//Debug.Log("Sai");
 					showing = false;

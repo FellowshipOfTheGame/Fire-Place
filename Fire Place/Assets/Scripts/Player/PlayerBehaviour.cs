@@ -20,6 +20,10 @@ public class PlayerBehaviour : MonoBehaviour
 
 	public Transform cameraFollowPoint = null;
 
+	private bool gotDir = false;
+	private Vector3 cameraForward;
+	private Vector3 cameraRight;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +47,18 @@ public class PlayerBehaviour : MonoBehaviour
 
 				float yVel = rgbd.velocity.y;
 
-				Vector3 dir = ((mainCamera.right * horAxis) + (mainCamera.forward * verAxis)).normalized;
+				if(!gotDir && (horAxis != 0 || verAxis != 0)) {
+
+					cameraRight = mainCamera.right;
+					cameraForward = mainCamera.forward;
+
+					gotDir = true;
+
+				}
+
+				if(horAxis == 0 && verAxis == 0) gotDir = false;
+
+				Vector3 dir = ((cameraRight * horAxis) + (cameraForward * verAxis)).normalized;
 
 				rgbd.velocity = new Vector3(dir.x  * velocity, yVel, dir.z * velocity);
 

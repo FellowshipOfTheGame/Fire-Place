@@ -25,16 +25,12 @@ public class EndDemo : MonoBehaviour
         instance = this;
     }
 
-# if UNITY_EDITOR
     void Update()
     {
 
-
-        if(Input.GetKeyDown(KeyCode.F6)) End();
+        if(Input.GetKeyDown(KeyCode.F7)) End();
 
     }
-
-# endif
 
     public void End() {
 
