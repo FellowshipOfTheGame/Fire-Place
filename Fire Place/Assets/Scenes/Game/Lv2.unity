@@ -9,7 +9,7 @@ OcclusionCullingSettings:
     smallestHole: 0.25
     backfaceThreshold: 100
   m_SceneGUID: 8189f200692bcce46b2774519de3f014
-  m_OcclusionCullingData: {fileID: 36300000, guid: 90afb4fe9beff7f4387be9d26d6923eb,
+  m_OcclusionCullingData: {fileID: 36300000, guid: 0a4c8289e294c6346a241c3765078253,
     type: 2}
 --- !u!104 &2
 RenderSettings:
@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.07737162, g: 0.0955498, b: 0.12994495, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3804,7 +3804,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acao: 0
   addictive: 1
-  sceneName: Lv2-3_WIP
+  sceneName: Lv2-3
 --- !u!65 &165533860
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3816,8 +3816,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 60, y: 15, z: 4}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 169.43388, y: 15, z: 4}
+  m_Center: {x: 54.716938, y: 0, z: 0.00012093495}
 --- !u!4 &165533861
 Transform:
   m_ObjectHideFlags: 0
@@ -3826,7 +3826,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 165533858}
   m_LocalRotation: {x: -0, y: 0.32106847, z: -0, w: 0.947056}
-  m_LocalPosition: {x: 95.3, y: 6.6, z: 239.9}
+  m_LocalPosition: {x: 108.6, y: 6.6, z: 322}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -25269,7 +25269,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1333640980
 Transform:
@@ -36788,7 +36788,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2035706725
 Transform:
@@ -37400,7 +37400,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2056743895
 Transform:
