@@ -39,23 +39,12 @@ public class ActivateNote : MonoBehaviour
 
 		if (inRange)
 		{
-			if (!showing) {
+			
+			if (Input.GetButtonDown("Use"))
+				ToogleNote(!showing);
+			else if (showing && Input.GetKeyDown(KeyCode.Escape))
+				ToogleNote(false);
 
-				if (Input.GetButtonDown("Use"))
-				{
-					//Debug.Log("Entra");
-					ToogleNote(true);
-				}
-
-			} else {
-
-				if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Use"))
-				{
-					//Debug.Log("Sai");
-					ToogleNote(false);
-				}
-
-			}
 		}
 
 	}
@@ -75,7 +64,6 @@ public class ActivateNote : MonoBehaviour
 	{
 		if (other.tag == "Player")
 		{
-
 			letterE.enabled = false;
 			inRange = false;
 		}
