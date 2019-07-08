@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1699397996575097534}
   m_Layer: 0
-  m_Name: Bush
+  m_Name: Bush_Medium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -266,19 +266,19 @@ PrefabInstance:
     - target: {fileID: 2300008, guid: 5c08d127b542976458268c5716a0cdb1, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fc50e6462df0f1448a20e12f221854d1, type: 2}
+      objectReference: {fileID: 2100000, guid: edd6e48fd5632eb4581d88476c42b035, type: 2}
     - target: {fileID: 2300004, guid: 5c08d127b542976458268c5716a0cdb1, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fc50e6462df0f1448a20e12f221854d1, type: 2}
+      objectReference: {fileID: 2100000, guid: edd6e48fd5632eb4581d88476c42b035, type: 2}
     - target: {fileID: 2300006, guid: 5c08d127b542976458268c5716a0cdb1, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fc50e6462df0f1448a20e12f221854d1, type: 2}
+      objectReference: {fileID: 2100000, guid: edd6e48fd5632eb4581d88476c42b035, type: 2}
     - target: {fileID: 2300002, guid: 5c08d127b542976458268c5716a0cdb1, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fc50e6462df0f1448a20e12f221854d1, type: 2}
+      objectReference: {fileID: 2100000, guid: edd6e48fd5632eb4581d88476c42b035, type: 2}
     - target: {fileID: 3300008, guid: 5c08d127b542976458268c5716a0cdb1, type: 3}
       propertyPath: m_Mesh
       value: 

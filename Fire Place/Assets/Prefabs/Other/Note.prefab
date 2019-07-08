@@ -182,9 +182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fe08d94fbb2bd24ca2dbd6642d79bd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letterE: {fileID: 2826241970449570882}
+  letterE: {fileID: 2826241970449570887}
   MainCamera: {fileID: 0}
-  noteOnCanvas: {fileID: 0}
   noteImage: {fileID: 21300000, guid: ae89e3b4cbc4a6b41908b8475b4577ce, type: 3}
   noteText: 
   player: {fileID: 0}
