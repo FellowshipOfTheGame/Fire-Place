@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PLRDeathBehavior : MonoBehaviour
 {
+
+	public bool allowDeath = true;
 	public float iceDamage = 1;
 
 	private bool takingDamage = true;
@@ -24,18 +26,28 @@ public class PLRDeathBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+		// Does cold damage to player.
 		if (takingDamage)
 		{
-			if (health > 40)
-				health -= 3 * iceDamage / 100;
-			else
-				health -= iceDamage / 100;
+			if (health > 40) // Does more damage at start.
+				health -= 3 * iceDamage * Time.deltaTime;
+			else if(health > 0) // Does less damage when health is ending.
+				health -= iceDamage * Time.deltaTime;
+			else if(health < 0) // Clamps the life if it's lesser than 0.
+				health = 0;
+
+		} else { // Restores Player health.
+
+			if (health < 100) // Quickly restores health.
+				health += 10 * iceDamage * Time.deltaTime;
+			else if(health > 100) // Clamps the life if it's larger than 100.
+				health = 100;
 
 		}
-		else if (health < 100)
-			health += 10 * iceDamage / 100;
 
-		if (health <= 0)
+
+		if (health == 0 && allowDeath)
 		{
 			Debug.Log("Dead");
 			transform.position = lastFirePos;
@@ -43,7 +55,7 @@ public class PLRDeathBehavior : MonoBehaviour
 		}
 		
 
-		// Debug.Log("Health = " + health);
+		Debug.Log("Health = " + health);
 	}
 
 	void OnTriggerEnter(Collider other)

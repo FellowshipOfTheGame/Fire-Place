@@ -26,7 +26,7 @@ public class SceneCheckPoint : MonoBehaviour
 		if (other.gameObject.tag == "Player")
 		{
 
-			activeScenes = SceneManager.GetAllScenes();
+			activeScenes = GetLoadedScenes();
 
 			for (int i = 0; i < activeScenes.Length; i++)
 			{
@@ -34,7 +34,7 @@ public class SceneCheckPoint : MonoBehaviour
 					sceneIsActive = true;
 			}
 
-			if (acao == Action.Load) {
+			if (acao == Action.Load && !sceneIsActive) {
 
 				if (!addictive)
 				{
@@ -42,24 +42,35 @@ public class SceneCheckPoint : MonoBehaviour
 					SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
 					//lights.SetActive(false);
 				}
-
-				else if (!sceneIsActive)
+				else
 				{
 					//lights.SetActive(false);
 					SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
 				}
-			}
 
-			else if(acao == Action.Unload)
+			}
+			else if(acao == Action.Unload && sceneIsActive)
 			{
-				if (sceneIsActive)
-				{
-					//Debug.Log("Entra");
-					SceneManager.UnloadSceneAsync(sceneName);
-					//SceneManager.LoadScene(path, LoadSceneMode.Additive);
-				}
+
+				//Debug.Log("Entra");
+				SceneManager.UnloadSceneAsync(sceneName);
+				//SceneManager.LoadScene(path, LoadSceneMode.Additive);
 
 			}
 		}
 	}
+
+	Scene[] GetLoadedScenes() {
+
+		Scene[] loadedScenes = new Scene[SceneManager.sceneCount];
+		for(int i = 0; i < SceneManager.sceneCount; i++) {
+
+			loadedScenes[i] = SceneManager.GetSceneAt(i);
+
+		}
+
+		return loadedScenes;
+
+	}
+
 }

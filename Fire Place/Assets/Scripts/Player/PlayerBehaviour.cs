@@ -24,6 +24,8 @@ public class PlayerBehaviour : MonoBehaviour
 	private Vector3 cameraForward;
 	private Vector3 cameraRight;
 
+	private Vector2 previousInput = Vector2.zero;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,41 +44,30 @@ public class PlayerBehaviour : MonoBehaviour
 			case States.Default:
 
 				//MOVEMENT INPUT---------------------------------------------------------------------------
-				float horAxis = Input.GetAxis("Horizontal");
-				float verAxis = Input.GetAxis("Vertical");
+				Vector2 inputAxis = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
 				float yVel = rgbd.velocity.y;
 
-				if(!gotDir && (horAxis != 0 || verAxis != 0)) {
+				if(!gotDir) {
 
 					cameraRight = mainCamera.right;
 					cameraForward = mainCamera.forward;
 
 					gotDir = true;
 
-				}
+				} if(inputAxis != previousInput) gotDir = false;
 
-				if(horAxis == 0 && verAxis == 0) gotDir = false;
-
-				Vector3 dir = ((cameraRight * horAxis) + (cameraForward * verAxis)).normalized;
+				Vector3 dir = ((cameraRight * inputAxis.x) + (cameraForward * inputAxis.y)).normalized;
 
 				rgbd.velocity = new Vector3(dir.x  * velocity, yVel, dir.z * velocity);
 
-				if(rgbd.useGravity) {
-
+				if(rgbd.useGravity)
 					rgbd.velocity += Physics.gravity * Time.deltaTime;
 
-				}
+				if(new Vector2(rgbd.velocity.x, rgbd.velocity.z).magnitude >= 0.5f) anim.SetBool("isWalking", true);
+				else anim.SetBool("isWalking", false);
 
-				if(new Vector2(rgbd.velocity.x, rgbd.velocity.z).magnitude >= 0.5f)
-				{
-					anim.SetBool("isWalking", true);
-				}
-				else
-				{
-					anim.SetBool("isWalking", false);
-				}
-
+				previousInput = inputAxis;
 
 				break;
 		}

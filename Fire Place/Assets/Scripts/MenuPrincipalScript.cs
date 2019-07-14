@@ -17,8 +17,6 @@ public class MenuPrincipalScript : MonoBehaviour
 
 	public float fadeSpeed = 0.01f;
 
-	private bool fadding = false;
-
 	private Color curButtonColor, curTextColor, curColorWhite, curColorBlack;
 
 	public string firstLevel = "Lv1";

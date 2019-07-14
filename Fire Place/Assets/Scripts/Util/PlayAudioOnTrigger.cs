@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayAudioOnTrigger : MonoBehaviour
 {
     [SerializeField] private string targetTag = "Player";
-    [SerializeField] private AudioSource source;
+    [SerializeField] private AudioSource source = null;
 
     void OnTriggerEnter(Collider other) {
 

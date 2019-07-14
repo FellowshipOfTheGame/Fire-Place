@@ -7,7 +7,7 @@ namespace Anathema.Rooms
     [RequireComponent(typeof(Collider))]
     public class CameraSwitcher : MonoBehaviour
     {
-        [SerializeField] private CinemachineVirtualCamera virtualCamera;
+        [SerializeField] private CinemachineVirtualCamera virtualCamera = null;
         
         private void OnTriggerEnter(Collider other)
         {
