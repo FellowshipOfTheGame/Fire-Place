@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerBehavior : MonoBehaviour
 {
@@ -21,8 +22,15 @@ public class PlayerBehavior : MonoBehaviour
 
 	private Rigidbody rgbd;
 
-    // Start is called before the first frame update
-    void Start()
+	//public Vector3 dest;
+	//public float facingY;
+	public float tolDistToDest = 0.2f, tolAngulo = 1, turningSpeed = 0.5f;
+
+	//public float db;
+	//public float angle;
+
+	// Start is called before the first frame update
+	void Start()
     {
 
 		mainCamera = Camera.main.transform;
@@ -31,11 +39,12 @@ public class PlayerBehavior : MonoBehaviour
 		rgbd = GetComponent<Rigidbody>();
 
 		state = States.Default;
-    }
+	}
 
 	// Update is called once per frame
 	void FixedUpdate()
 	{
+
 		switch (state)
 		{
 			case States.Default:
@@ -52,7 +61,6 @@ public class PlayerBehavior : MonoBehaviour
 
 					if (verAxis != 0)
 						rgbd.AddForce(mainCamera.forward * Mathf.Sign(verAxis) * acceleration, ForceMode.Force);
-
 				}
 
 				if(Vector3.Magnitude(new Vector2(rgbd.velocity.x,rgbd.velocity.z)) >= 0.5f)
@@ -64,6 +72,16 @@ public class PlayerBehavior : MonoBehaviour
 					anim.SetBool("isWalking", false);
 				}
 
+
+				break;
+
+			case States.Fogueira:
+
+				if (Input.anyKeyDown)
+				{
+					//ANIMAÇÃO DE LEVANTAR
+					state = States.Default;
+				}
 
 				break;
 		}
@@ -80,18 +98,83 @@ public class PlayerBehavior : MonoBehaviour
 
 		if (Vector3.Magnitude(rgbd.velocity) > 1)
 		{
+			//Debug.Log("MAGNITUDE = " + (Vector3.Magnitude(rgbd.velocity)));
 			if (rgbd.velocity.z > 0)
+			{
 				transform.eulerAngles = new Vector3(0, -yAngle, 0);
+				//Debug.Log("Transform angle");
+			}
 			else
+			{
 				transform.eulerAngles = new Vector3(0, yAngle, 0);
+				//Debug.Log("Transform angle");
+			}
 		}
 
-		if (Input.GetKey(KeyCode.R))
+	}
+
+	public void Sit(Vector3 keyPos, float facingY)
+	{
+		if (state != States.Fogueira)
+			StartCoroutine(WaitGetToPosition(keyPos, facingY));
+	}
+
+	private IEnumerator WaitGetToPosition(Vector3 keyPos, float facingY)
+	{
+		Vector3 distance = keyPos - transform.position;				//calcula o vetor distancia
+		distance = distance.normalized;                             //normaliza
+		distance = new Vector3(distance.x, 0, distance.z);			//projeta no plano
+
+		while ((transform.position - keyPos).magnitude > tolDistToDest)				//enquanto a distancia até o destino for maior que a tolerancia
 		{
+			if (Vector3.Magnitude(rgbd.velocity) <= maxVelocity)			//aplica uma força no player para andar
+			{
+				rgbd.AddForce(distance * acceleration, ForceMode.Force);
+			}
+			yield return null;
+		}
+		
 
-			transform.position = new Vector3(42, 9, 22);
-			
+		if (facingY > transform.eulerAngles.y)								//ajeita o angulo
+		{
+			if (facingY - transform.eulerAngles.y > 180)
+			{
+				while (Mathf.Abs(transform.eulerAngles.y - facingY) > tolAngulo)
+				{
+					transform.eulerAngles -= new Vector3(0, turningSpeed, 0);
+					yield return null;
+				}
+			}
+			else
+			{
+				while (Mathf.Abs(transform.eulerAngles.y - facingY) > tolAngulo)
+				{
+					transform.eulerAngles += new Vector3(0, turningSpeed, 0);
+					yield return null;
+				}
+			}
+		}
+		else
+		{
+			if (transform.eulerAngles.y - facingY > 180)
+			{
+				while (Mathf.Abs(transform.eulerAngles.y - facingY) > tolAngulo)
+				{
+					transform.eulerAngles += new Vector3(0, turningSpeed, 0);
+					yield return null;
+				}
+			}
+			else
+			{
+				while (Mathf.Abs(transform.eulerAngles.y - facingY) > tolAngulo)
+				{
+					transform.eulerAngles -= new Vector3(0, turningSpeed, 0);
+					yield return null;
+				}
+			}
 		}
 
+		//set animation to sitted   GetComponentInChildren<Animator>().
+		state = States.Fogueira;
 	}
 }

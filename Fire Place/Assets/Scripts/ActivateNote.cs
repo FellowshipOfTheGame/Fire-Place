@@ -107,18 +107,6 @@ public class ActivateNote : MonoBehaviour
 			}
 
 			noteOnCanvas.GetComponentInChildren<RectTransform>().localScale = curScale;
-			//curScale = Color.Lerp(curColo, Color.clear, t);
-			//curColorWhite = Color.Lerp(curColorWhite, Color.clear, t);
-
-			//BlackPlaneMaterial.SetColor("_BaseColor", curColorBlack);
-			//textJogar.GetComponent<Text>().color = curColorWhite;
-
-			/*if (curScale.x.a < 0.1)
-			{
-				popping = false;
-				blackPanel.SetActive(false);
-				textJogar.SetActive(false);
-			}*/
 		}
 	}
 

@@ -81,6 +81,9 @@ MonoBehaviour:
   acceleration: 20
   maxVelocity: 2.5
   gravityScale: 1.5
+  tolDistToDest: 0.2
+  tolAngulo: 2
+  turningSpeed: 1
 --- !u!114 &1991327956771987734
 MonoBehaviour:
   m_ObjectHideFlags: 0
