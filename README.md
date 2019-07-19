@@ -23,7 +23,8 @@ FirePlace is an immersive experience focusing on ambience, exploration, investig
 ## Attributions:
 
 - The following animations were obtained from Mixamo:
-  - Player walk animation. 
+    - Player walk animation. 
+    - Player sit animation.
 - The following sound effects were used:
-- https://freesound.org/people/Benboncan/sounds/84111/ (Modified for creating the blizzard sound)
-- https://freesound.org/people/Medartimus/sounds/217542/ (Modified for a car brake sound)
+    - https://freesound.org/people/Benboncan/sounds/84111/ (Modified for creating the blizzard sound)
+    - https://freesound.org/people/Medartimus/sounds/217542/ (Modified for a car brake sound)
