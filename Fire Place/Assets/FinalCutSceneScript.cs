@@ -9,22 +9,24 @@ public class FinalCutSceneScript : MonoBehaviour
 
 	public GameObject player, sceneStart, sceneEnd;
 	private State state;
+	private Rigidbody playerRgbd;
+	private float playerAcceleration, playerMaxVelocity;
 
 	public GameObject blackPlanel;
 
 	public GameObject[] finalTexts;
 
 	private float totalDist, dist, alpha, secondsBetweenTexts = 5;
+	public float tolDistToDest = 0.2f;
 
     // Start is called before the first frame update
     void Start()
     {
 		state = State.None;
 
-		/*player = GameObject.FindGameObjectWithTag("Player");
-
-		sceneStart = GameObject.FindGameObjectWithTag("StartTrigger");
-		sceneEnd = GameObject.FindGameObjectWithTag("EndTrigger");*/
+		playerRgbd = player.GetComponent<Rigidbody>();
+		playerAcceleration = player.GetComponent<PlayerBehavior>().acceleration;
+		playerMaxVelocity = player.GetComponent<PlayerBehavior>().maxVelocity;
 	}
 
     // Update is called once per frame
@@ -43,10 +45,6 @@ public class FinalCutSceneScript : MonoBehaviour
 
 		if (state == State.Middle)
 		{
-			//Debug.Log("totalDist = " + totalDist);
-			//Debug.Log("dist = " + dist);
-			//Debug.Log("alpha = " + alpha);
-
 			dist = Vector3.Magnitude(player.transform.position - sceneEnd.transform.position);
 
 			alpha = 1 - dist / totalDist;
@@ -58,6 +56,11 @@ public class FinalCutSceneScript : MonoBehaviour
 	public void SetStart()
 	{
 		state = State.Middle;
+
+		player.GetComponent<PlayerBehavior>().setControllable(false);
+		player.GetComponent<PlayerBehavior>().Sit(sceneEnd.transform.position, 0);
+		//StartCoroutine(WalkToEnd(sceneEnd.transform.position));
+
 	}
 
 	public void SetEnd()
@@ -68,21 +71,18 @@ public class FinalCutSceneScript : MonoBehaviour
 
 	private IEnumerator FinalCredits()
 	{
-		//Debug.Log("Hey 1");
 		player.GetComponent<PlayerBehavior>().enabled = false;
-		//Debug.Log("Hey 2");
+
 		blackPlanel.GetComponent<Image>().color = new Color(0, 0, 0, 1);
-		//Debug.Log("Hey 3");
-		//Debug.Log("color = " + blackPlanel.GetComponent<Image>().color);
+
 		for (int i = 0; i < finalTexts.Length; i++)
 		{
-			//Debug.Log("Hey 4");
 			StartCoroutine(ChangeAlpha(finalTexts[i], 1, 0.5f));
-			//Debug.Log("Hey 5");
+
 			yield return new WaitForSeconds(secondsBetweenTexts+1);
-			//Debug.Log("Hey 6");
+
 			StartCoroutine(ChangeAlpha(finalTexts[i], 0, 0.5f));
-			//Debug.Log("Hey 7");
+
 		}
 
 		//return null;
@@ -115,4 +115,20 @@ public class FinalCutSceneScript : MonoBehaviour
 
 		target.GetComponent<Text>().color = new Color(target.GetComponent<Text>().color.r, target.GetComponent<Text>().color.g, target.GetComponent<Text>().color.b, finalAlpha);
 	}
+
+	/*private IEnumerator WalkToEnd(Vector3 keyPos)
+	{
+		Vector3 distance = keyPos - transform.position;             //calcula o vetor distancia
+		distance = distance.normalized;                             //normaliza
+		distance = new Vector3(distance.x, 0, distance.z);          //projeta no plano
+
+		while ((transform.position - keyPos).magnitude > tolDistToDest)             //enquanto a distancia até o destino for maior que a tolerancia
+		{
+			if (Vector3.Magnitude(playerRgbd.velocity) <= playerMaxVelocity)            //aplica uma força no player para andar
+			{
+				playerRgbd.AddForce(distance * playerAcceleration, ForceMode.Force);
+			}
+			yield return null;
+		}
+	}*/
 }

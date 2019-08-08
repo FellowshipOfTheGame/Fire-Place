@@ -26,6 +26,10 @@ public class PlayerBehavior : MonoBehaviour
 	//public float facingY;
 	public float tolDistToDest = 0.2f, tolAngulo = 1, turningSpeed = 0.5f;
 
+	private bool controllable = true;
+	public void setControllable(bool val) { controllable = val; }
+	public bool getControllable() { return controllable; }
+
 	//public float db;
 	//public float angle;
 
@@ -56,10 +60,10 @@ public class PlayerBehavior : MonoBehaviour
 					float horAxis = Input.GetAxis("Horizontal");
 					float verAxis = Input.GetAxis("Vertical");
 					
-					if (horAxis != 0)                                                     //Adiciona força de acordo com
+					if (horAxis != 0 && controllable)                                                     //Adiciona força de acordo com
 						rgbd.AddForce(mainCamera.right * Mathf.Sign(horAxis) * acceleration, ForceMode.Force);           //o eixo de input
 
-					if (verAxis != 0)
+					if (verAxis != 0 && controllable)
 						rgbd.AddForce(mainCamera.forward * Mathf.Sign(verAxis) * acceleration, ForceMode.Force);
 				}
 
