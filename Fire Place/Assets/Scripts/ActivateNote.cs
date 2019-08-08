@@ -8,10 +8,8 @@ public class ActivateNote : MonoBehaviour
 	public MeshRenderer letterE;
 
 	public Sprite noteImage;
-	public string noteText;
 
 	private Image noteOnCanvasImage;
-	private Text noteOnCanvasText;
 
 	private bool showing = false;
 	public bool isShowing() { return showing; }
@@ -26,12 +24,10 @@ public class ActivateNote : MonoBehaviour
 		GameObject noteOnCanvas = GameObject.FindGameObjectWithTag("noteOnCanvas");
 
 		noteOnCanvasImage = noteOnCanvas.GetComponentInChildren<Image>();
-		noteOnCanvasText = noteOnCanvas.GetComponentInChildren<Text>();
 
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehaviour>();
 
 		noteOnCanvasImage.enabled = false;
-		noteOnCanvasText.enabled = false;
 
 	}
 	void Update()
@@ -82,7 +78,6 @@ public class ActivateNote : MonoBehaviour
 
 			noteOnCanvasImage.sprite = noteImage;
 			noteOnCanvasImage.preserveAspect = true;
-			noteOnCanvasText.text = noteText;
 
 		} else {
 
@@ -91,7 +86,6 @@ public class ActivateNote : MonoBehaviour
 		}
 
 		noteOnCanvasImage.enabled = show;
-		noteOnCanvasText.enabled = show;
 
 	}
 }
