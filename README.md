@@ -14,7 +14,7 @@ FirePlace is an immersive experience focusing on ambience, exploration, investig
 
 - Daniel Fróes
 - Fernando Gorgulho Fayet
-- Gabriel de Moura Peres
+- Amanda de Moura Peres
 - Luís Eduardo Rozante de Freitas Pereira
 - William Paulo Gonçalves Braz
 
