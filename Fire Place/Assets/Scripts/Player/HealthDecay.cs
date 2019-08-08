@@ -5,21 +5,41 @@ using UnityEngine.UI;
 
 public class HealthDecay : MonoBehaviour
 {
-	public GameObject player;
 
-	public float alpha = 0;
+	private PLRDeathBehavior player = null;
+
+	[SerializeField] private Image iceEffect = null;
+	[SerializeField] private float maxIceAlpha = 0.9f;
+
+	[SerializeField] private Image vignetteEffect = null;	
+	[SerializeField] private float maxVignetteAlpha = 0.6f;
 
     // Start is called before the first frame update
     void Start()
     {
-		player = GameObject.FindGameObjectWithTag("Player");    
+
+		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PLRDeathBehavior>();    
+
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-		alpha = (1 - player.GetComponent<PLRDeathBehavior>().getHealth()/100) * 0.6f;
+      
+		if(iceEffect != null)
+		{
+			Color iceEffectColor = iceEffect.color;
+			iceEffectColor.a = (1 - player.getHealth()/100) * maxIceAlpha;
+			iceEffect.color = iceEffectColor;
+		} else
+			Debug.Log("HealthDecay.FixedUpdate: No ice effect!");
 
-		GetComponent<Image>().color = new Color(1, 1, 1, alpha);
+		if(iceEffect != null)
+		{
+			;
+			vignetteEffect.color = new Color(0, 0, 0, (1 - player.getHealth()/100) * maxVignetteAlpha);
+		} else
+			Debug.Log("HealthDecay.FixedUpdate: No vignette effect!");
+
     }
 }
