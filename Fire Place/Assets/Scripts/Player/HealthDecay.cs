@@ -20,6 +20,6 @@ public class HealthDecay : MonoBehaviour
     {
 		alpha = (1 - player.GetComponent<PLRDeathBehavior>().getHealth()/100) * 0.6f;
 
-		GetComponent<Image>().color = new Color(0, 0, 0, alpha);
+		GetComponent<Image>().color = new Color(1, 1, 1, alpha);
     }
 }
