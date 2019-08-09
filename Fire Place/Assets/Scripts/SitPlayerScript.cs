@@ -4,51 +4,54 @@ using UnityEngine;
 
 public class SitPlayerScript : MonoBehaviour
 {
-	private GameObject player;
+	private PlayerBehaviour player;
 
-	public GameObject letterE;
+	public MeshRenderer letterE;
 
-	public Vector3 dest;
-	public float facingY;
+	public Transform dest;
+	private float facingY;
+
+	private bool inRange = false;
 
 	// Start is called before the first frame update
 	void Start()
     {
-		player = GameObject.FindGameObjectWithTag("Player");
-
-		dest = new Vector3(0.5f, 0, 0.5f);
-		dest = transform.TransformPoint(dest);
-
+		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehaviour>();
 		facingY = transform.eulerAngles.y;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-	void OnTriggerStay(Collider collision)
+	void Update()
 	{
-		if(collision.gameObject.tag == "Player")
+		if(inRange)
 		{
-			if (Input.GetKeyUp(KeyCode.E))
+			if (Input.GetButtonDown("Use"))
 			{
-				player.GetComponent<PlayerBehaviour>().Sit(dest, facingY);
-				letterE.GetComponent<MeshRenderer>().enabled = false;
+				player.Sit(dest.position, facingY);
+				
+				Destroy(transform.parent.gameObject);
+
 			}
 		}	
 	}
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.tag == "Player")
-			letterE.GetComponent<MeshRenderer>().enabled = true;
+
+		if(other.tag == "Player")
+		{
+			letterE.enabled = true;
+			inRange = true;
+		}
+
 	}
 
 	void OnTriggerExit(Collider other)
 	{
 		if (other.tag == "Player")
-			letterE.GetComponent<MeshRenderer>().enabled = false;
+		{
+			letterE.enabled = false;
+			inRange = false;
+		}
+
 	}
 }

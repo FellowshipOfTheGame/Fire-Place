@@ -10,7 +10,7 @@ public class FinalCutSceneScript : MonoBehaviour
 	public GameObject player, sceneStart, sceneEnd;
 	private State state;
 	private Rigidbody playerRgbd;
-	private float playerAcceleration, playerMaxVelocity;
+	private float playerVelocity;
 
 	public GameObject blackPlanel;
 
@@ -25,8 +25,7 @@ public class FinalCutSceneScript : MonoBehaviour
 		state = State.None;
 
 		playerRgbd = player.GetComponent<Rigidbody>();
-		playerAcceleration = 2.0f;
-		playerMaxVelocity = player.GetComponent<PlayerBehaviour>().velocity;
+		playerVelocity = player.GetComponent<PlayerBehaviour>().velocity;
 	}
 
     // Update is called once per frame
@@ -124,7 +123,7 @@ public class FinalCutSceneScript : MonoBehaviour
 
 		while ((transform.position - keyPos).magnitude > tolDistToDest)             //enquanto a distancia até o destino for maior que a tolerancia
 		{
-			if (Vector3.Magnitude(playerRgbd.velocity) <= playerMaxVelocity)            //aplica uma força no player para andar
+			if (Vector3.Magnitude(playerRgbd.velocity) <= playerVelocity)            //aplica uma força no player para andar
 			{
 				playerRgbd.AddForce(distance * playerAcceleration, ForceMode.Force);
 			}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -12,11 +13,14 @@ public class PlayerBehaviour : MonoBehaviour
 	public void setState(States state) { this.state = state; }
 	public States getState() { return state; }
 
+	private States previousState = States.Default;
+
 	public float velocity = 8.5f;
 	public float gravityScale = 1;
 
 	private bool gotDir = false;
 	private Vector2 previousInput = Vector2.zero;
+	private Vector3 previousPos = Vector2.zero;
 
 	private Transform mainCamera;
 	public Transform cameraFollowPoint = null;
@@ -28,7 +32,13 @@ public class PlayerBehaviour : MonoBehaviour
 	public float getHealth() { return health; }
 
 	public bool allowDeath = true;
-	public float iceDamage = 1;
+	public float iceDamageMultiplier = 1;
+
+	private bool takingDamage = true;
+	public bool TakingDamage
+	{ 
+		get { return takingDamage; }
+	}
 
 	[System.Serializable]
 	public class IceEffect
@@ -65,12 +75,12 @@ public class PlayerBehaviour : MonoBehaviour
 	}
 	[SerializeField] private IceEffect iceEffect = new IceEffect();
 
-	private bool takingDamage = true;
-	public bool isTakingDamage() { return takingDamage; }
-	public void setTakingDamage(bool val) { takingDamage = val; }
+	public Rigidbody _rigidbody;
+	public Collider _collider;
 
-	[SerializeField] private Animator anim = null;
-	private Rigidbody rgbd;
+	public Animator _animator;
+	
+	public NavMeshAgent _navigation;
 
 	public GameObject pauseMenu;
 
@@ -80,14 +90,17 @@ public class PlayerBehaviour : MonoBehaviour
 
 	public float tolDistToDest = 0.2f, tolAngulo = 1, turningSpeed = 0.5f;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
 
 		mainCamera = Camera.main.transform;
-		rgbd = GetComponent<Rigidbody>();
+
+		_collider.enabled = false;
+
+		_navigation.enabled = false;
 
 		state = States.Default;
+		
     }
 
 	void Update()
@@ -108,16 +121,16 @@ public class PlayerBehaviour : MonoBehaviour
 				if (takingDamage)
 				{
 					if (health > 40) // Does more damage at start.
-						health -= 3 * iceDamage * Time.deltaTime;
+						health -= 3 * iceDamageMultiplier * Time.deltaTime;
 					else if(health > 0) // Does less damage when health is ending.
-						health -= iceDamage * Time.deltaTime;
+						health -= iceDamageMultiplier * Time.deltaTime;
 					else if(health < 0) // Clamps the life if it's lesser than 0.
 						health = 0;
 
 				} else { // Restores Player health.
 
 					if (health < 100) // Quickly restores health.
-						health += 10 * iceDamage * Time.deltaTime;
+						health += 10 * iceDamageMultiplier * Time.deltaTime;
 					else if(health > 100) // Clamps the life if it's larger than 100.
 						health = 100;
 
@@ -142,10 +155,20 @@ public class PlayerBehaviour : MonoBehaviour
 
 				break;
 
+			case States.Fogueira:
+
+				// PAUSE ---------------------------------------------------------------------------
+				if (Input.GetKeyDown(KeyCode.Escape))
+				{
+					Pause();
+					return;
+				}
+
+				break;
+
 		}
 	}
 
-	// Update is called once per frame
 	void FixedUpdate()
 	{
 		switch (state)
@@ -155,7 +178,7 @@ public class PlayerBehaviour : MonoBehaviour
 				// MOVEMENT ---------------------------------------------------------------------------
 				Vector2 inputAxis = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-				float yVel = rgbd.velocity.y;
+				float yVel = _rigidbody.velocity.y;
 
 				if(!gotDir) {
 
@@ -168,23 +191,23 @@ public class PlayerBehaviour : MonoBehaviour
 
 				Vector3 dir = ((cameraRight * inputAxis.x) + (cameraForward * inputAxis.y)).normalized;
 
-				rgbd.velocity = new Vector3(dir.x  * velocity, yVel, dir.z * velocity);
+				_rigidbody.velocity = new Vector3(dir.x  * velocity, yVel, dir.z * velocity);
 
-				if(rgbd.useGravity)
-					rgbd.velocity += Physics.gravity * Time.deltaTime;
+				if(_rigidbody.useGravity)
+					_rigidbody.velocity += Physics.gravity * Time.deltaTime;
 
-				if(new Vector2(rgbd.velocity.x, rgbd.velocity.z).magnitude >= 0.5f) anim.SetBool("isWalking", true);
-				else anim.SetBool("isWalking", false);
+				if(new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.z).magnitude >= 0.5f) _animator.SetBool("isWalking", true);
+				else _animator.SetBool("isWalking", false);
 
 				previousInput = inputAxis;
 
 				// ROTATION ----------------------------------------------------------------------------------
-				Vector3 projection = new Vector3(rgbd.velocity.x, 0, rgbd.velocity.z);
+				Vector3 projection = new Vector3(_rigidbody.velocity.x, 0, _rigidbody.velocity.z);
 				float yAngle = Vector3.Angle(projection, new Vector3(1, 0, 0));
 
-				if (Vector3.Magnitude(rgbd.velocity) > 1)
+				if (Vector3.Magnitude(_rigidbody.velocity) > 1)
 				{
-					if (rgbd.velocity.z > 0)
+					if (_rigidbody.velocity.z > 0)
 						transform.eulerAngles = new Vector3(0, -yAngle, 0);
 					else
 						transform.eulerAngles = new Vector3(0, yAngle, 0);
@@ -192,7 +215,17 @@ public class PlayerBehaviour : MonoBehaviour
 
 				break;
 
+			case States.Fogueira:
+
+				if(Vector3.Distance(transform.position, previousPos) / Time.fixedDeltaTime > 0.1f) _animator.SetBool("isWalking", true);
+				else _animator.SetBool("isWalking", false);
+
+				break;
+
 		}
+
+		previousPos = transform.position;
+
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -207,73 +240,74 @@ public class PlayerBehaviour : MonoBehaviour
 			takingDamage = true;
 	}
 
-	public void Sit(Vector3 keyPos, float facingY)
+	public void Sit(Vector3 targetPos, float facingY)
 	{
 		if (state != States.Fogueira)
-			StartCoroutine(WaitGetToPosition(keyPos, facingY));
+		{
+			state = States.Fogueira;
+
+			_collider.enabled = false;
+			_navigation.enabled = true;
+
+			StartCoroutine(SitState(targetPos, facingY));
+
+		}
 	}
 
-	private IEnumerator WaitGetToPosition(Vector3 keyPos, float facingY)
+	private IEnumerator SitState(Vector3 targetPos, float facingY)
 	{
-		Vector3 distance = keyPos - transform.position;				//calcula o vetor distancia
-		distance = distance.normalized;                             //normaliza
-		distance = new Vector3(distance.x, 0, distance.z);			//projeta no plano
 
-		while ((transform.position - keyPos).magnitude > tolDistToDest)				//enquanto a distancia até o destino for maior que a tolerancia
-		{
-			if (Vector3.Magnitude(rgbd.velocity) <= velocity)			//aplica uma força no player para andar
-			{
-				rgbd.AddForce(distance * 2, ForceMode.Force);
-			}
-			yield return null;
-		}
-		
+		_navigation.SetDestination(targetPos);
 
-		if (facingY > transform.eulerAngles.y)								//ajeita o angulo
+		while(Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(targetPos.x, 0, targetPos.z)) > tolDistToDest)
+			yield return new WaitForFixedUpdate();
+
+		_collider.enabled = true;
+		_navigation.enabled = false;
+
+		Quaternion initialRotation = transform.rotation;
+		Quaternion finalRotation = Quaternion.Euler(new Vector3(0, facingY, 0));
+		float time = 0;
+
+		while(time < 1)
 		{
-			if (facingY - transform.eulerAngles.y > 180)
-			{
-				while (Mathf.Abs(transform.eulerAngles.y - facingY) > tolAngulo)
-				{
-					transform.eulerAngles -= new Vector3(0, turningSpeed, 0);
-					yield return null;
-				}
-			}
-			else
-			{
-				while (Mathf.Abs(transform.eulerAngles.y - facingY) > tolAngulo)
-				{
-					transform.eulerAngles += new Vector3(0, turningSpeed, 0);
-					yield return null;
-				}
-			}
-		}
-		else
-		{
-			if (transform.eulerAngles.y - facingY > 180)
-			{
-				while (Mathf.Abs(transform.eulerAngles.y - facingY) > tolAngulo)
-				{
-					transform.eulerAngles += new Vector3(0, turningSpeed, 0);
-					yield return null;
-				}
-			}
-			else
-			{
-				while (Mathf.Abs(transform.eulerAngles.y - facingY) > tolAngulo)
-				{
-					transform.eulerAngles -= new Vector3(0, turningSpeed, 0);
-					yield return null;
-				}
-			}
+
+			time += Time.deltaTime * turningSpeed;
+			transform.rotation = Quaternion.Lerp(initialRotation, finalRotation, time);
+			
+			yield return new WaitForEndOfFrame();
+
 		}
 
-		//set animation to sitted   GetComponentInChildren<Animator>().
-		state = States.Fogueira;
+		_animator.SetBool("isSeated", true);
+
+		while(state == States.Fogueira || state == States.Pausado)
+		{
+
+			if (Input.GetButtonDown("Use") || Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
+			{
+				_animator.SetBool("isSeated", false);
+
+				time = 0;
+				while(time < 1)
+				{
+					time += Time.deltaTime;	
+					yield return new WaitForEndOfFrame();
+				}
+
+				state = States.Default;
+
+			}
+
+			yield return new WaitForEndOfFrame();
+
+		}
+
 	}
 
 	public void Pause()
 	{
+		previousState = state;
 		state = States.Pausado;
 		Time.timeScale = 0;
 
@@ -286,7 +320,7 @@ public class PlayerBehaviour : MonoBehaviour
 
 	public void Unpause()
 	{
-		state = States.Default;
+		state = previousState;
 		Time.timeScale = 1;
 
 		Cursor.visible = false;

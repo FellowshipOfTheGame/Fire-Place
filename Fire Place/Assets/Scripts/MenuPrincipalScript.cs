@@ -164,8 +164,21 @@ public class MenuPrincipalScript : MonoBehaviour
         }
 
 		// Enables the Player.
-		player.GetComponent<PlayerBehaviour>().enabled = true;
-		player.GetComponent<Rigidbody>().useGravity = true;
+		PlayerBehaviour playerScript = player.GetComponent<PlayerBehaviour>();
+
+		playerScript._collider.enabled = true;
+		playerScript._rigidbody.useGravity = true;
+
+		// Waits for a small amount of time for Physics to settle.
+		time = 0;
+		while(time < 0.1f) 
+        {
+            time += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+
+		// Enables the player.
+		playerScript.enabled = true;
 
 	}
 
