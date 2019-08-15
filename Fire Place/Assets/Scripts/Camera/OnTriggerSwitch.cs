@@ -1,24 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 using Cinemachine;
 
-public class OnTriggerSwitch : MonoBehaviour
+namespace FirePlace.Camera
 {
 
-    [SerializeField] private CinemachineVirtualCamera toggleCam = null;
-    
-    private void OnTriggerEnter(Collider other)
+    public class OnTriggerSwitch : MonoBehaviour
     {
 
-        if(other.tag == "Player")
+        [SerializeField] private string toggleCamName = "";
+        
+        private void OnTriggerEnter(Collider other)
         {
 
-            //cam.enabled = false;
-            toggleCam.enabled = true;
+            if(other.tag == "Player")
+            {
+
+                CinemachineVirtualCamera toggleCam = GameObject.Find(toggleCamName).GetComponent<CinemachineVirtualCamera>();
+
+                if(toggleCam != null)
+                    toggleCamName = CameraController.instance.SwichCameras(toggleCam).transform.name;
+                else
+                    Debug.Log("FirePlace.Camera.OnTriggerSwitch: Camera " + toggleCamName  + " not found!");
+
+            }
 
         }
 
     }
-
 }

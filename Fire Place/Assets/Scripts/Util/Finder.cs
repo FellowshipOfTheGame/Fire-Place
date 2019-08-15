@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Fireplace.Util
+namespace FirePlace.Util
 {
     public class Finder
     {

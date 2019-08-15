@@ -9,7 +9,7 @@ OcclusionCullingSettings:
     smallestHole: 0.25
     backfaceThreshold: 100
   m_SceneGUID: 8189f200692bcce46b2774519de3f014
-  m_OcclusionCullingData: {fileID: 36300000, guid: 0a4c8289e294c6346a241c3765078253,
+  m_OcclusionCullingData: {fileID: 36300000, guid: a7aa2f591f37d674582fdd3d6bed3889,
     type: 2}
 --- !u!104 &2
 RenderSettings:
@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.077262454, g: 0.09523142, b: 0.12886687, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -120,7 +120,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: e456267107afedd4ebcd04890761e2c8, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 52e539d3a3a5b0645b2cbdd356a16bb4, type: 2}
 --- !u!1001 &2117903
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7332,7 +7332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e3f4892b1a15840a7d8c507370aa01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acao: 1
+  action: 0
   addictive: 1
   sceneName: Lv1-2
 --- !u!65 &263406590
@@ -7405,7 +7405,7 @@ Transform:
   m_LocalScale: {x: 20, y: 15, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &265198215
 PrefabInstance:
@@ -11024,7 +11024,7 @@ PrefabInstance:
     - target: {fileID: 8456482797047965089, guid: 33b3235503d903a4aa804f352feafdab,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8456482797047965089, guid: 33b3235503d903a4aa804f352feafdab,
         type: 3}
@@ -13247,7 +13247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7cd3f972dfc2b047bce0fb23be1b89a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggleCam: {fileID: 1137317087}
+  toggleCamName: 2-r Camera
 --- !u!65 &504540789
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13318,7 +13318,7 @@ Transform:
   m_LocalScale: {x: 8, y: 10, z: 15}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &504827664
 PrefabInstance:
@@ -14002,7 +14002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e3f4892b1a15840a7d8c507370aa01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acao: 0
+  action: 0
   addictive: 1
   sceneName: Lv2-3
 --- !u!65 &533217205
@@ -14075,7 +14075,7 @@ Transform:
   m_LocalScale: {x: 165, y: 15, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &533992089
 PrefabInstance:
@@ -14903,7 +14903,7 @@ Transform:
   - {fileID: 2001696387}
   - {fileID: 1998385261}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &574956573
 PrefabInstance:
@@ -23439,6 +23439,98 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 911530410}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &911974932
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 911974935}
+  - component: {fileID: 911974934}
+  - component: {fileID: 911974933}
+  - component: {fileID: 911974936}
+  m_Layer: 11
+  m_Name: InvisibleWall_Lv2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &911974933
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911974932}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 94cc3f021002ed8478e4e61bb2280c31, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &911974934
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911974932}
+  m_Mesh: {fileID: 6334809452256713701, guid: 8bc088848ec0df141a23862d37b435cc, type: 3}
+--- !u!4 &911974935
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911974932}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!64 &911974936
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911974932}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 6334809452256713701, guid: 8bc088848ec0df141a23862d37b435cc, type: 3}
 --- !u!1001 &912202150
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26059,7 +26151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7cd3f972dfc2b047bce0fb23be1b89a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggleCam: {fileID: 1362638027}
+  toggleCamName: 2-l Camera
 --- !u!65 &1045706935
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26130,7 +26222,7 @@ Transform:
   m_LocalScale: {x: 5, y: 10, z: 20}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1050032352
 PrefabInstance:
@@ -28658,7 +28750,7 @@ Transform:
   m_Children:
   - {fileID: 1503811677}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: -40, z: -0.079}
 --- !u!1001 &1138522353
 PrefabInstance:
@@ -33703,7 +33795,7 @@ Transform:
   m_Children:
   - {fileID: 393795204}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: -106.039, z: -0.079}
 --- !u!1001 &1363118466
 PrefabInstance:
@@ -34054,7 +34146,7 @@ Transform:
   m_Children:
   - {fileID: 912202151}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1372876143
 PrefabInstance:
@@ -37086,7 +37178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e3f4892b1a15840a7d8c507370aa01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acao: 1
+  action: 0
   addictive: 1
   sceneName: Lv1-2
 --- !u!65 &1538130019
@@ -37159,7 +37251,7 @@ Transform:
   m_LocalScale: {x: 20, y: 15, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1538664845
 PrefabInstance:

@@ -1,15 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
-public class EndTrigger : MonoBehaviour
+namespace FirePlace.Demo
 {
-    [SerializeField] private string targetTag = "Player";
 
-    void OnTriggerEnter(Collider other) {
+    public class EndTrigger : MonoBehaviour
+    {
+        [SerializeField] private string targetTag = "Player";
 
-        if(other.tag == targetTag) EndDemo.instance.End();
+        void OnTriggerEnter(Collider other) {
 
-    }
+            if(other.tag == targetTag) EndDemo.instance.End();
+
+        }
+
+}
 
 }

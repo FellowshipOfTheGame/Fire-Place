@@ -1,30 +1,36 @@
 using Cinemachine;
-using Fireplace.Util;
+
 using UnityEngine;
 
-[RequireComponent(typeof(CinemachineVirtualCamera))]
-public class SetupToFollowPlayer : MonoBehaviour
+using FirePlace.Util;
+
+namespace FirePlace.Camera
 {
-    [SerializeField] private string PlayerSceneName = "Player";
-    [SerializeField] private string PlayerTag = "Player";
-    private CinemachineVirtualCamera virtualCamera;
-    private void Start()
+
+    [RequireComponent(typeof(CinemachineVirtualCamera))]
+    public class SetupToFollowPlayer : MonoBehaviour
     {
-        virtualCamera = GetComponent<CinemachineVirtualCamera>();
-
-        if (!virtualCamera)
+        [SerializeField] private string PlayerSceneName = "Player";
+        [SerializeField] private string PlayerTag = "Player";
+        private CinemachineVirtualCamera virtualCamera;
+        private void Start()
         {
-            Debug.LogWarning($"{nameof(SetupToFollowPlayer)}: {name}: Requires component of type: {nameof(CinemachineVirtualCamera)}");
-        }
-        
-        GameObject player = Finder.FindRootObject(PlayerSceneName, PlayerTag);
-        if (player)
-        {
+            virtualCamera = GetComponent<CinemachineVirtualCamera>();
 
-            Transform followPoint = player.GetComponent<PlayerBehaviour>().cameraFollowPoint;
+            if (!virtualCamera)
+            {
+                Debug.LogWarning($"{nameof(SetupToFollowPlayer)}: {name}: Requires component of type: {nameof(CinemachineVirtualCamera)}");
+            }
+            
+            GameObject player = Finder.FindRootObject(PlayerSceneName, PlayerTag);
+            if (player)
+            {
 
-            virtualCamera.Follow = followPoint;
-            virtualCamera.LookAt = followPoint;
+                Transform followPoint = player.GetComponent<PlayerBehaviour>().cameraFollowPoint;
+
+                virtualCamera.Follow = followPoint;
+                virtualCamera.LookAt = followPoint;
+            }
         }
     }
 }

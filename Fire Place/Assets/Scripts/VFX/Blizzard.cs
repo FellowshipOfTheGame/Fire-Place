@@ -1,9 +1,9 @@
 using System;
-using Fireplace.Util;
+using FirePlace.Util;
 using UnityEngine;
 using UnityEngine.Experimental.VFX;
 
-namespace Fireplace.VFX 
+namespace FirePlace.VFX 
 {
     public class Blizzard : MonoBehaviour
     {
