@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 926062428390058898}
   - component: {fileID: 7051311792480955593}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.75
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2974836514432252395
 GameObject:
@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2974836514432252384}
   - component: {fileID: 2974836514432252388}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: trigger
   m_TagString: Fire
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8496534244574264821}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Campfire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 3739919500928952996}
   - component: {fileID: 1136472712282091596}
   - component: {fileID: 2124483685439217574}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 5180484648400989253}
   - component: {fileID: 1100326865410024512}
   - component: {fileID: 7893380899240467793}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -317,7 +317,7 @@ GameObject:
   - component: {fileID: 5530015347185661960}
   - component: {fileID: 1647756439}
   - component: {fileID: 1647756440}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -512,7 +512,7 @@ GameObject:
   - component: {fileID: 2158127431197167958}
   - component: {fileID: 7394809389421297448}
   - component: {fileID: 5940591086905000231}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: mesh_fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}

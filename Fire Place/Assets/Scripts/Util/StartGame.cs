@@ -9,6 +9,8 @@ public class StartGame : MonoBehaviour
     void Start()
     {
         
+        Time.timeScale = 1;
+
         // Keeps this object while loading the scenes.
         DontDestroyOnLoad(this.gameObject);
         StartCoroutine(LoadScenes());

@@ -18,7 +18,8 @@ namespace FirePlace.Camera
             if(other.tag == "Player")
             {
 
-                CinemachineVirtualCamera toggleCam = GameObject.Find(toggleCamName).GetComponent<CinemachineVirtualCamera>();
+                GameObject toggleCamObj =  GameObject.Find(toggleCamName);
+                CinemachineVirtualCamera toggleCam = toggleCamObj.GetComponent<CinemachineVirtualCamera>();
 
                 if(toggleCam != null)
                     toggleCamName = CameraController.instance.SwichCameras(toggleCam).transform.name;

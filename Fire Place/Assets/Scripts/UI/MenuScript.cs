@@ -80,7 +80,6 @@ namespace FirePlace.UI
 
 			// When the level is done loading, starts fading to the scene.
 			StartCoroutine(Fading());
-			startTime = Time.time;
 			
 			// Start switching camera.
 			StartCoroutine(SwitchCamera());
@@ -90,6 +89,8 @@ namespace FirePlace.UI
 		// Fades between the menu screen and the level.
 		private IEnumerator Fading()
 		{
+
+			startTime = Time.time;
 
 			// Fades the colors.
 			while(curColorWhite.a > 0.01f)
