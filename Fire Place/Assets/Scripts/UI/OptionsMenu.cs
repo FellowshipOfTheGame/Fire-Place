@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,9 +21,10 @@ namespace FirePlace.UI
 		public Toggle bloom;
 		public Toggle fxaa;
 
-		void Start()
+		void Awake()
 		{
 
+			// Gets the Volume options.
 			if(PlayerPrefs.HasKey("Volume"))
 				volSlider.value = PlayerPrefs.GetFloat("Volume");
 			else
@@ -30,11 +32,12 @@ namespace FirePlace.UI
 				PlayerPrefs.SetFloat("Volume", 1.0f);
 				volSlider.value = 1.0f;
 			}
-
 			UpdateVolume();
 
+			// Gets the Quality options.
 			quality.value = QualitySettings.GetQualityLevel();
 
+			// Gets the Ambient Occlusion options.
 			if(PlayerPrefs.HasKey("AO"))
 				ambientOcclusion.isOn = (PlayerPrefs.GetInt("AO") == 1);
 			else
@@ -44,6 +47,7 @@ namespace FirePlace.UI
 			}
 			UpdateAO();
 
+			// Gets the Bloom options.
 			if(PlayerPrefs.HasKey("Bloom"))
 				bloom.isOn = (PlayerPrefs.GetInt("Bloom") == 1);
 			else
@@ -53,6 +57,7 @@ namespace FirePlace.UI
 			}
 			UpdateBloom();
 
+			// Gets the FXAA options.
 			if(PlayerPrefs.HasKey("FXAA"))
 				fxaa.isOn = (PlayerPrefs.GetInt("FXAA") == 1);
 			else
@@ -64,6 +69,7 @@ namespace FirePlace.UI
 
 		}
 
+		// Updates the game Volume.
 		public void UpdateVolume()
 		{
 
@@ -72,8 +78,11 @@ namespace FirePlace.UI
 
 		}
 
+		// Updates the game Quality, needs restart.
 		public void UpdateQuality()
 		{
+
+			// Sets the Quality.
 			switch (quality.value)
 			{
 				case 0:
@@ -89,8 +98,28 @@ namespace FirePlace.UI
 					QualitySettings.SetQualityLevel(3);
 					break;
 			}
+
+			// Ensures the Quality setting has been saved.
+			PlayerPrefs.Save();
+
+			// Restarts the game.
+			// - Opens a new game.
+			if(Application.platform == RuntimePlatform.WindowsPlayer)
+				Process.Start(Application.dataPath + "/../FirePlace.exe");
+			else if(Application.platform == RuntimePlatform.LinuxPlayer)
+				Process.Start(Application.dataPath + "/../FirePlace.x86_64"); 
+			// - Closes the current game.
+ 			Application.Quit();
+
 		}
 
+		// Resets the Quality setting.
+		public void ResetQuality()
+		{
+			quality.value = QualitySettings.GetQualityLevel();
+		}
+
+		// Updates the game Ambient Occlusion.
 		public void UpdateAO()
 		{
 
@@ -103,6 +132,7 @@ namespace FirePlace.UI
 
 		}
 
+		// Updates the game Bloom.
 		public void UpdateBloom()
 		{
 
@@ -115,6 +145,7 @@ namespace FirePlace.UI
 
 		}
 
+		// Updates the game FXAA.
 		public void UpdateFXAA()
 		{
 
@@ -127,6 +158,7 @@ namespace FirePlace.UI
 
 		}
 
+		// Updates the game Exits the game.
 		public void ExitGame()
 		{
 			Application.Quit();

@@ -26,7 +26,7 @@ namespace FirePlace.FX
         }
 
 
-        private void Start()
+        private void Awake()
         {
 
             cam = GetComponent<HDAdditionalCameraData>();

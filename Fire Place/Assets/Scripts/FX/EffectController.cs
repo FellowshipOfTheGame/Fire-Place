@@ -44,7 +44,7 @@ namespace FirePlace.FX
             }
         }
 
-        private void Start()
+        private void Awake()
         {
 
             volume = GetComponent<Volume>();
