@@ -9,7 +9,7 @@ OcclusionCullingSettings:
     smallestHole: 0.25
     backfaceThreshold: 100
   m_SceneGUID: 4ae10d4f93f9b7c43ab873dc2520f7a5
-  m_OcclusionCullingData: {fileID: 36300000, guid: 0a4c8289e294c6346a241c3765078253,
+  m_OcclusionCullingData: {fileID: 36300000, guid: 9d6da700aa98c1141a191527b4bff8c7,
     type: 2}
 --- !u!104 &2
 RenderSettings:
@@ -120,7 +120,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: e456267107afedd4ebcd04890761e2c8, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 3f5493cb9cac6af46a92bcb283f0b9ce, type: 2}
 --- !u!1 &11254566
 GameObject:
   m_ObjectHideFlags: 0
@@ -2369,7 +2369,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 35, y: -130}
-  m_SizeDelta: {x: 300, y: 400}
+  m_SizeDelta: {x: 300, y: 500}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &972917116
 MonoBehaviour:
@@ -2404,9 +2404,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "<b>Artista T\xE9cnico:</b>\nAmanda de Moura Peres\n\n<b>L\xEDder de Projeto
-    e Modelador 3D:</b>\nDaniel Fr\xF3es\n\n<b>Programador:</b>\nFernando Gorgulho
-    Fayet"
+  m_Text: "<b><size=24>Artista T\xE9cnico:</size></b>\nAmanda de Moura Peres\n\n<b><size=24>L\xEDder
+    de Projeto e Modelador de Personagens:</size></b>\nDaniel Fr\xF3es\n\n<b><size=24>Programador:</size></b>\nFernando
+    Gorgulho Fayet"
 --- !u!222 &972917117
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2838,7 +2838,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 435, y: -130}
-  m_SizeDelta: {x: 300, y: 400}
+  m_SizeDelta: {x: 300, y: 500}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1172820954
 MonoBehaviour:
@@ -2873,8 +2873,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "<b>Modelador 3D e Artista:</b>\nLu\xEDs Eduardo Rozante de Freitas Pereira\n\n<b>Roteirista
-    e Level Designer:</b>\nWilliam Paulo Gon\xE7alves Braz"
+  m_Text: "<b><size=24>Modelador 3D  e Level Designer:</size></b>\nLu\xEDs Eduardo
+    Rozante de Freitas Pereira\n\n<b><size=24>Roteirista, Artista 2D e Level Designer:</size></b>\nWilliam
+    Paulo Gon\xE7alves Braz"
 --- !u!222 &1172820955
 CanvasRenderer:
   m_ObjectHideFlags: 0

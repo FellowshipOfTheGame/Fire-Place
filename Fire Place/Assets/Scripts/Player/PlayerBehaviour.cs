@@ -176,6 +176,11 @@ public class PlayerBehaviour : MonoBehaviour
 			case States.Default:
 
 				// MOVEMENT ---------------------------------------------------------------------------
+
+				// Plays the animation at the start of the fram eso any physics calculations that may change the velocity from the previous fram have already been performed.
+				if(new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.z).magnitude >= 0.5f) _animator.SetBool("isWalking", true);
+				else _animator.SetBool("isWalking", false);
+
 				Vector2 inputAxis = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
 				float yVel = _rigidbody.velocity.y;
@@ -195,9 +200,6 @@ public class PlayerBehaviour : MonoBehaviour
 
 				if(_rigidbody.useGravity)
 					_rigidbody.velocity += Physics.gravity * Time.deltaTime;
-
-				if(new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.z).magnitude >= 0.5f) _animator.SetBool("isWalking", true);
-				else _animator.SetBool("isWalking", false);
 
 				previousInput = inputAxis;
 
