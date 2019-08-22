@@ -5,43 +5,37 @@ using UnityEngine.UI;
 
 public class ActivateNote : MonoBehaviour
 {
-	public MeshRenderer letterE;
 
-	public Sprite noteImage;
-
-	private Image noteOnCanvasImage;
+	[SerializeField] private Sprite noteImage = null;
+	[SerializeField] private Vector2 interactIconOffset = new Vector2(48, 48);
 
 	private bool showing = false;
 	public bool isShowing() { return showing; }
 
 	private bool inRange = false;
 
-	public PlayerBehaviour player;
-
-	void Start()
-	{
-		//noteOnCanvas.SetActive(true);
-		GameObject noteOnCanvas = GameObject.FindGameObjectWithTag("noteOnCanvas");
-
-		noteOnCanvasImage = noteOnCanvas.GetComponentInChildren<Image>();
-
-		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehaviour>();
-
-		noteOnCanvasImage.enabled = false;
-
-	}
 	void Update()
 	{
 
 		if (inRange)
 		{
+
+			PlayerBehaviour.instance.hud.UpdateIconPosition(gameObject, interactIconOffset);
 			
 			if (Input.GetButtonDown("Use"))
-				ToogleNote(!showing);
-			else if (showing && Input.GetKeyDown(KeyCode.Escape))
-				ToogleNote(false);
+				if(PlayerBehaviour.instance.getState() == PlayerBehaviour.States.Default)
+				{
+					ToogleNote(true);
+					return;
+				}
+			
 
 		}
+
+		if (showing && Input.GetButtonDown("Use") && PlayerBehaviour.instance.getState() == PlayerBehaviour.States.Lendo)
+			ToogleNote(false);
+		else if (showing && Input.GetButtonDown("Cancel"))
+			ToogleNote(false);
 
 	}
 
@@ -50,7 +44,7 @@ public class ActivateNote : MonoBehaviour
 
 		if(other.tag == "Player")
 		{
-			letterE.enabled = true;
+			PlayerBehaviour.instance.hud.interactIcon.enabled = true;
 			inRange = true;
 		}
 
@@ -58,9 +52,10 @@ public class ActivateNote : MonoBehaviour
 
 	void OnTriggerExit(Collider other)
 	{
+
 		if (other.tag == "Player")
 		{
-			letterE.enabled = false;
+			PlayerBehaviour.instance.hud.interactIcon.enabled = false;
 			inRange = false;
 		}
 
@@ -74,18 +69,18 @@ public class ActivateNote : MonoBehaviour
 		if (show)
 		{
 
-			player.setState(PlayerBehaviour.States.Lendo);
+			PlayerBehaviour.instance.setState(PlayerBehaviour.States.Lendo);
 
-			noteOnCanvasImage.sprite = noteImage;
-			noteOnCanvasImage.preserveAspect = true;
+			PlayerBehaviour.instance.hud.canvasNote.sprite = noteImage;
+			PlayerBehaviour.instance.hud.canvasNote.preserveAspect = true;
 
 		} else {
 
-			player.setState(PlayerBehaviour.States.Default);
+			PlayerBehaviour.instance.setState(PlayerBehaviour.States.Default);
 
 		}
 
-		noteOnCanvasImage.enabled = show;
+		PlayerBehaviour.instance.hud.canvasNote.enabled = show;
 
 	}
 }

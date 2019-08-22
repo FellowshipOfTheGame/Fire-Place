@@ -1,0 +1,11 @@
+- Add notes. [?]
+- Add final cutscene. [ ]
+- Change Blizzard strenght as Player progresses. [ ]
+- Note scenery.
+|- Car crash. [ ]
+|- Fridge. [x]
+|- Cave blocks. [ ]
+- Fix Player standing up. [ ]
+- Finish camera.
+|- Going through objects on level 3. [ ]
+|- Can see unloaded levels at the end of level 3. [ ]

@@ -4,31 +4,34 @@ using UnityEngine;
 
 public class SitPlayerScript : MonoBehaviour
 {
-	private PlayerBehaviour player;
-
-	public MeshRenderer letterE;
 
 	public Transform dest;
 	public float angle = 0.0f;
 	private float facingY;
+
+	[SerializeField] private Vector2 interactIconOffset = new Vector2(48, 48);
 
 	private bool inRange = false;
 
 	// Start is called before the first frame update
 	void Start()
     {
-		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehaviour>();
 		facingY = transform.eulerAngles.y + angle;
     }
 
 	void Update()
 	{
-		if(inRange)
+		if(inRange && PlayerBehaviour.instance.getState() == PlayerBehaviour.States.Default)
 		{
+
+			PlayerBehaviour.instance.hud.UpdateIconPosition(gameObject, interactIconOffset);
+
 			if (Input.GetButtonDown("Use"))
 			{
-				player.Sit(dest.position, facingY);
 				
+				PlayerBehaviour.instance.Sit(dest.position, facingY);
+				PlayerBehaviour.instance.hud.interactIcon.enabled = false;
+
 				Destroy(transform.parent.gameObject);
 
 			}
@@ -40,7 +43,7 @@ public class SitPlayerScript : MonoBehaviour
 
 		if(other.tag == "Player")
 		{
-			letterE.enabled = true;
+			PlayerBehaviour.instance.hud.interactIcon.enabled = true;
 			inRange = true;
 		}
 
@@ -50,7 +53,7 @@ public class SitPlayerScript : MonoBehaviour
 	{
 		if (other.tag == "Player")
 		{
-			letterE.enabled = false;
+			PlayerBehaviour.instance.hud.interactIcon.enabled = false;
 			inRange = false;
 		}
 

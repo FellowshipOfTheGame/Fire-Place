@@ -7,6 +7,9 @@ using UnityEngine.AI;
 
 public class PlayerBehaviour : MonoBehaviour
 {
+
+	public static PlayerBehaviour instance;
+
 	public enum States { Default, Lendo, Fogueira, Pausado };
 
 	private States state;
@@ -39,6 +42,29 @@ public class PlayerBehaviour : MonoBehaviour
 	{ 
 		get { return takingDamage; }
 	}
+
+	[System.Serializable]
+	public class HUD
+	{
+
+		public PlayerBehaviour parent;
+
+		public Image canvasNote = null;
+
+		public Image interactIcon = null;
+
+		public void UpdateIconPosition(GameObject target, Vector2 iconOffset) 
+		{
+
+			Vector3 pos = Camera.main.WorldToScreenPoint(target.transform.position);
+			pos = new Vector3(pos.x + iconOffset.x, pos.y + iconOffset.y, 0);
+
+			interactIcon.gameObject.transform.position = pos;
+
+		}
+
+	}
+	public HUD hud = new HUD();
 
 	[System.Serializable]
 	public class IceEffect
@@ -93,6 +119,12 @@ public class PlayerBehaviour : MonoBehaviour
     void Awake()
     {
 
+		if(instance != null)
+			Debug.Log("PlayerBehaviour.Awake: More than one PlayerBehaviout instance found!");
+		else
+			instance = this;
+
+
 		mainCamera = Camera.main.transform;
 
 		_collider.enabled = false;
@@ -136,22 +168,23 @@ public class PlayerBehaviour : MonoBehaviour
 
 				}
 
-				iceEffect.UpdateEffect();
+				// Allows the interact icon to appear.
+				hud.interactIcon.gameObject.SetActive(true);
 
+				iceEffect.UpdateEffect();
 
 				if (health == 0 && allowDeath)
 					Debug.Log("Dead");
 
 				break;
 
-			case States.Pausado:
+			case States.Lendo:
 
-				// UNPAUSE ---------------------------------------------------------------------------
-				if (Input.GetKeyDown(KeyCode.Escape))
-				{
-					Unpause();
-					return;
-				}
+				// Disallows the interact icon to appear.
+				hud.interactIcon.gameObject.SetActive(false);
+
+				// Ensures the Player is not walking.
+				_animator.SetBool("isWalking", false);
 
 				break;
 
@@ -164,8 +197,24 @@ public class PlayerBehaviour : MonoBehaviour
 					return;
 				}
 
+				// Disallows the interact icon to appear.
+				hud.interactIcon.gameObject.SetActive(false);
+
 				break;
 
+			case States.Pausado:
+
+				// UNPAUSE ---------------------------------------------------------------------------
+				if (Input.GetKeyDown(KeyCode.Escape))
+				{
+					Unpause();
+					return;
+				}
+
+				// Disallows the interact icon to appear.
+				hud.interactIcon.gameObject.SetActive(false);
+
+				break;
 		}
 	}
 
