@@ -42,7 +42,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1991327956771987729}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 7807a7aa2335e974caf57e1294ce3cd5, type: 2}
   m_IsTrigger: 0
   m_Enabled: 0
   m_Radius: 0.25
@@ -78,30 +78,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: 2.5
+  turningSpeed: 2
   gravityScale: 1
   cameraFollowPoint: {fileID: 8099289434369892947}
   allowDeath: 0
   iceDamageMultiplier: 1
-  standUpTime: 3
+  paused:
+    menu: {fileID: 0}
+    initialSelection: {fileID: 0}
+    eventSystem: {fileID: 0}
   hud:
     parent: {fileID: 1991327956771987728}
-    canvasNote: {fileID: 0}
+    notesObject: {fileID: 0}
+    noteImage: {fileID: 0}
+    noteSound: {fileID: 0}
     interactIcon: {fileID: 0}
   iceEffect:
     parent: {fileID: 1991327956771987728}
     ice: {fileID: 0}
     maxIceAlpha: 0.9
     vignette: {fileID: 0}
-    maxVignetteAlpha: 0.6
-  blackScreen: {fileID: 0}
+    maxVignetteAlpha: 0.8
   _rigidbody: {fileID: 1991327956771987731}
   _collider: {fileID: 1991327956771987730}
   _animator: {fileID: 8800246677862794330}
+  standUpTime: 3
   _navigation: {fileID: 1991327955694495500}
-  pauseMenu: {fileID: 0}
-  tolDistToDest: 0.2
-  tolAngulo: 1
-  turningSpeed: 2
+  distanceToDestinationTolerance: 0.2
 --- !u!195 &1991327955694495500
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -422,6 +425,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1991327956771987735}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 8865273baf87c5e4990687c634c498ae,
+        type: 3}
+      propertyPath: m_Name
+      value: PrototypeCharacterV1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224801822505238522, guid: 8865273baf87c5e4990687c634c498ae,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8274873701517981592, guid: 8865273baf87c5e4990687c634c498ae,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8865273baf87c5e4990687c634c498ae,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -475,21 +493,6 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 8865273baf87c5e4990687c634c498ae,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8274873701517981592, guid: 8865273baf87c5e4990687c634c498ae,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 8865273baf87c5e4990687c634c498ae,
-        type: 3}
-      propertyPath: m_Name
-      value: PrototypeCharacterV1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4224801822505238522, guid: 8865273baf87c5e4990687c634c498ae,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -6057140222963153312, guid: 8865273baf87c5e4990687c634c498ae,

@@ -18,7 +18,7 @@ namespace FirePlace.UI
 	{
 		public Material BlackPlaneMaterial;
 
-		public EventSystem eventSys;
+		public EventSystem menuEventSys;
 		public Image btnJogar, btnContinuar, btnOpcoes, btnSair;
 		public Text textJogar, textContinuar, textOpcoes, textSair;
 		public Image logo;
@@ -41,7 +41,7 @@ namespace FirePlace.UI
 		void Start()
 		{
 
-			eventSys.SetSelectedGameObject(btnJogar.gameObject);
+			menuEventSys.SetSelectedGameObject(btnJogar.gameObject);
 
 			Cursor.visible = true;
 			Cursor.lockState = CursorLockMode.None;
@@ -101,13 +101,8 @@ namespace FirePlace.UI
 				float t = (Time.time - startTime) * fadeSpeed;
 
 				// Increases the color fade.
-
-				BlackPlaneMaterial.SetColor("_BaseColor", curColorBlack);
-
 				curButtonColor = Color.Lerp(curButtonColor, Color.clear, t);
 				curTextColor = Color.Lerp(curTextColor, Color.clear, t);
-
-				curColorBlack = Color.Lerp(curColorBlack, Color.clear, t);
 				curColorWhite = Color.Lerp(curColorWhite, Color.clear, t);
 
 				btnJogar.color = curButtonColor;
@@ -134,6 +129,20 @@ namespace FirePlace.UI
 
 			logo.gameObject.SetActive(false);
 
+			startTime = Time.time;
+			while(curColorBlack.a > 0.01f)
+			{
+
+				// Calculates the delta time.
+				float t = (Time.time - startTime) * fadeSpeed;
+
+				// Increases the color fade.
+				BlackPlaneMaterial.SetColor("_BaseColor", curColorBlack);
+				curColorBlack = Color.Lerp(curColorBlack, Color.clear, t);
+
+				yield return null;
+
+			}
 		}
 
 		private IEnumerator SwitchCamera () 
@@ -182,6 +191,11 @@ namespace FirePlace.UI
 				time += Time.fixedDeltaTime;
 				yield return new WaitForFixedUpdate();
 			}
+
+			// Enables the correct event system.
+			menuEventSys.enabled = false;
+
+			PlayerBehaviour.instance.paused.eventSystem.enabled = true;
 
 			// Enables the player.
 			PlayerBehaviour.instance.setState(PlayerBehaviour.States.Default);

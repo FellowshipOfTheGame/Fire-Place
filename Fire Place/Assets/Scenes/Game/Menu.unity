@@ -2369,7 +2369,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 35, y: -130}
-  m_SizeDelta: {x: 300, y: 500}
+  m_SizeDelta: {x: 450, y: 450}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &972917116
 MonoBehaviour:
@@ -2405,7 +2405,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "<b><size=24>Artista T\xE9cnico:</size></b>\nAmanda de Moura Peres\n\n<b><size=24>L\xEDder
-    de Projeto e Modelador de Personagens:</size></b>\nDaniel Fr\xF3es\n\n<b><size=24>Programador:</size></b>\nFernando
+    de Projeto e Modelador de Personagens:</size></b>\nDaniel da Rocha Fr\xF3es \n\n<b><size=24>Programador:</size></b>\nFernando
     Gorgulho Fayet"
 --- !u!222 &972917117
 CanvasRenderer:
@@ -2837,8 +2837,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 435, y: -130}
-  m_SizeDelta: {x: 300, y: 500}
+  m_AnchoredPosition: {x: 520, y: -130}
+  m_SizeDelta: {x: 450, y: 450}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1172820954
 MonoBehaviour:
@@ -2875,7 +2875,8 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "<b><size=24>Modelador 3D  e Level Designer:</size></b>\nLu\xEDs Eduardo
     Rozante de Freitas Pereira\n\n<b><size=24>Roteirista, Artista 2D e Level Designer:</size></b>\nWilliam
-    Paulo Gon\xE7alves Braz"
+    Paulo Gon\xE7alves Braz\n\n<b><size=24>Project Owner</size></b>\nRafael Pedrosa
+    Silva Clerici"
 --- !u!222 &1172820955
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3000,8 +3001,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -430, y: 450}
-  m_SizeDelta: {x: 800, y: 600}
+  m_AnchoredPosition: {x: -530, y: 450}
+  m_SizeDelta: {x: 1000, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1222793518
 MonoBehaviour:
@@ -3166,7 +3167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlackPlaneMaterial: {fileID: 2100000, guid: 9023b3aad5ab43145a11a5b31692808b, type: 2}
-  eventSys: {fileID: 1498565058}
+  menuEventSys: {fileID: 1498565058}
   btnJogar: {fileID: 1475883511}
   btnContinuar: {fileID: 620123482}
   btnOpcoes: {fileID: 923209964}
@@ -3176,11 +3177,11 @@ MonoBehaviour:
   textOpcoes: {fileID: 1504842863}
   textSair: {fileID: 805967311}
   logo: {fileID: 234884698}
-  fadeSpeed: 0.01
+  fadeSpeed: 0.015
   firstLevel: Lv1
   menuCamera: {fileID: 1029174721}
   startVirtualCameraName: GameStartVCamera
-  switchCameraDelay: 5
+  switchCameraDelay: 10
   giveControlDelay: 5
 --- !u!114 &1359569024
 MonoBehaviour:

@@ -1,4 +1,0 @@
-- Car crash. [ ]
-- Check camera. []
-- Prevent Player from walking forward if ground is at a certaing angle. [ ]
-- Better break level 3 and F scenery.

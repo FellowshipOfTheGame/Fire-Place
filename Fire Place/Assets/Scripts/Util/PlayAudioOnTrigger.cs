@@ -10,10 +10,13 @@ namespace FirePlace.Util
     {
         [SerializeField] private string targetTag = "Player";
         [SerializeField] private AudioSource source = null;
+        [SerializeField] private bool repeat = false;
 
         void OnTriggerEnter(Collider other) {
 
             if(other.tag == targetTag) source.Play();
+
+            if(!repeat) Destroy(this);
 
         }
 

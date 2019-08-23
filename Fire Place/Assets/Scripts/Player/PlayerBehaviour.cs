@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 namespace FirePlace
 {	
@@ -49,9 +50,19 @@ namespace FirePlace
 		{ 
 			get { return takingDamage; }
 		}
+		
+		// UI &HUD too.
+		[System.Serializable]
+		public class Paused
+		{
 
-		[Header("UI & HUD")]
-		public GameObject pauseMenu;
+			public GameObject menu;
+			public Button initialSelection;
+			public EventSystem eventSystem;
+
+		}
+		[Header("Pause")]
+		public Paused paused = new Paused();
 
 		[System.Serializable]
 		public class HUD
@@ -59,7 +70,10 @@ namespace FirePlace
 
 			public PlayerBehaviour parent;
 
-			public Image canvasNote = null;
+			public GameObject notesObject = null;
+			public Image noteImage = null;
+
+			public AudioSource noteSound = null;
 
 			public Image interactIcon = null;
 
@@ -169,7 +183,7 @@ namespace FirePlace
 					} else { // Restores Player health.
 
 						if (health < 100) // Quickly restores health.
-							health += 10 * iceDamageMultiplier * Time.deltaTime;
+							health += 100 * iceDamageMultiplier * Time.deltaTime;
 						else if(health > 100) // Clamps the life if it's larger than 100.
 							health = 100;
 
@@ -177,8 +191,6 @@ namespace FirePlace
 
 					// Allows the interact icon to appear.
 					hud.interactIcon.gameObject.SetActive(true);
-
-					iceEffect.UpdateEffect();
 
 					if (health == 0 && allowDeath)
 						Debug.Log("Dead");
@@ -206,6 +218,11 @@ namespace FirePlace
 
 					// Disallows the interact icon to appear.
 					hud.interactIcon.gameObject.SetActive(false);
+
+					if (health < 100) // Quickly restores health.
+						health += 200 * iceDamageMultiplier * Time.deltaTime;
+					else if(health > 100) // Clamps the life if it's larger than 100.
+						health = 100;
 
 					break;
 
@@ -238,6 +255,9 @@ namespace FirePlace
 					break;
 
 			}
+
+			iceEffect.UpdateEffect();
+
 		}
 
 		void FixedUpdate()
@@ -265,21 +285,25 @@ namespace FirePlace
 
 					} if(inputAxis != previousInput) gotDir = false;
 
-					Vector3 dir = ((cameraRight * inputAxis.x) + (cameraForward * inputAxis.y)).normalized;
+					if(inputAxis != Vector2.zero)
+					{
+						Vector3 dir = ((cameraRight * inputAxis.x) + (cameraForward * inputAxis.y)).normalized;
 
-					_rigidbody.velocity = new Vector3(dir.x  * velocity, yVel, dir.z * velocity);
+						_rigidbody.velocity = new Vector3(dir.x  * velocity, yVel, dir.z * velocity);
 
-					if(_rigidbody.useGravity)
-						_rigidbody.velocity += Physics.gravity * Time.deltaTime;
+						if(_rigidbody.useGravity)
+							_rigidbody.velocity += Physics.gravity * Time.deltaTime;
 
-					previousInput = inputAxis;
+						previousInput = inputAxis;
 
-					// ROTATION ----------------------------------------------------------------------------------
-					Vector3 projection = new Vector3(_rigidbody.velocity.x, 0, _rigidbody.velocity.z);
-					float yAngle = Vector3.SignedAngle(Vector3.forward, projection, Vector3.up);
+						// ROTATION ----------------------------------------------------------------------------------
+						Vector3 projection = new Vector3(_rigidbody.velocity.x, 0, _rigidbody.velocity.z);
+						float yAngle = Vector3.SignedAngle(Vector3.forward, projection, Vector3.up);
 
-					if (_rigidbody.velocity.magnitude > 0.5f)
-						transform.eulerAngles = new Vector3(0, yAngle, 0);
+						if (_rigidbody.velocity.magnitude > 0.5f)
+							transform.eulerAngles = new Vector3(0, yAngle, 0);
+
+					}
 
 					break;
 
@@ -424,7 +448,9 @@ namespace FirePlace
 			Cursor.visible = true;
 			Cursor.lockState = CursorLockMode.None;
 
-			pauseMenu.SetActive(true);
+			paused.menu.SetActive(true);
+			paused.eventSystem.SetSelectedGameObject(paused.initialSelection.gameObject);
+			paused.initialSelection.OnSelect(null);
 
 		}
 
@@ -436,7 +462,7 @@ namespace FirePlace
 			Cursor.visible = false;
 			Cursor.lockState = CursorLockMode.Locked;
 
-			pauseMenu.SetActive(false);
+			paused.menu.SetActive(false);
 
 		}
 

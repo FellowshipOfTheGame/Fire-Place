@@ -76,8 +76,9 @@ namespace FirePlace.Util
 
 				PlayerBehaviour.instance.setState(PlayerBehaviour.States.Lendo);
 
-				PlayerBehaviour.instance.hud.canvasNote.sprite = noteImage;
-				PlayerBehaviour.instance.hud.canvasNote.preserveAspect = true;
+				PlayerBehaviour.instance.hud.noteImage.sprite = noteImage;
+				PlayerBehaviour.instance.hud.noteImage.preserveAspect = true;
+				PlayerBehaviour.instance.hud.noteSound.Play();
 
 			} else {
 
@@ -85,7 +86,7 @@ namespace FirePlace.Util
 
 			}
 
-			PlayerBehaviour.instance.hud.canvasNote.enabled = show;
+			PlayerBehaviour.instance.hud.notesObject.SetActive(show);
 
 		}
 	}
