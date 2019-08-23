@@ -1,5 +1,5 @@
-- Add notes. [?]
-- Add final cutscene. [ ]
+- Add notes. [x]
+- Add final cutscene. [x]
 - Change Blizzard strenght as Player progresses. [ ]
 - Note scenery.
 |- Car crash. [ ]

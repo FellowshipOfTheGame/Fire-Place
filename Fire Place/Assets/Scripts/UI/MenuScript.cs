@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 using Cinemachine;
 
+using FirePlace;
 using FirePlace.Camera;
 
 namespace FirePlace.UI
@@ -148,10 +149,9 @@ namespace FirePlace.UI
 			}
 
 			// Plays the stand up animation.
-			GameObject player = GameObject.FindWithTag("Player");
-			player.GetComponentInChildren<Animator>().SetBool("isSeated", false);
+			PlayerBehaviour.instance.gameObject.GetComponentInChildren<Animator>().SetBool("isSeated", false);
 
-			StartCoroutine(GiveControl(player));
+			StartCoroutine(GivePlayerControl());
 
 			// Switch cameras.
 			menuCamera.gameObject.SetActive(false);
@@ -160,7 +160,7 @@ namespace FirePlace.UI
 
 		}
 
-		private IEnumerator GiveControl(GameObject player) {
+		private IEnumerator GivePlayerControl() {
 
 			// Waits for delay and enables the player.
 			float time = 0;
@@ -172,10 +172,8 @@ namespace FirePlace.UI
 			}
 
 			// Enables the Player.
-			PlayerBehaviour playerScript = player.GetComponent<PlayerBehaviour>();
-
-			playerScript._collider.enabled = true;
-			playerScript._rigidbody.useGravity = true;
+			PlayerBehaviour.instance._collider.enabled = true;
+			PlayerBehaviour.instance._rigidbody.useGravity = true;
 
 			// Waits for a small amount of time for Physics to settle.
 			time = 0;
@@ -186,7 +184,7 @@ namespace FirePlace.UI
 			}
 
 			// Enables the player.
-			playerScript.enabled = true;
+			PlayerBehaviour.instance.setState(PlayerBehaviour.States.Default);
 
 		}
 
