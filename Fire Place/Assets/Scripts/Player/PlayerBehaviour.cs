@@ -21,7 +21,9 @@ namespace FirePlace
 
 		private States previousState = States.Default;
 
+		[Header("Movement")]
 		public float velocity = 8.5f;
+		public float turningSpeed = 0.5f;
 		public float gravityScale = 1;
 
 		private bool gotDir = false;
@@ -34,9 +36,11 @@ namespace FirePlace
 		private Vector3 cameraForward;
 		private Vector3 cameraRight;
 
+		// Health too.
 		private float health = 100;
 		public float getHealth() { return health; }
 
+		[Header("Health")]
 		public bool allowDeath = true;
 		public float iceDamageMultiplier = 1;
 
@@ -45,6 +49,9 @@ namespace FirePlace
 		{ 
 			get { return takingDamage; }
 		}
+
+		[Header("UI & HUD")]
+		public GameObject pauseMenu;
 
 		[System.Serializable]
 		public class HUD
@@ -104,22 +111,17 @@ namespace FirePlace
 		}
 		[SerializeField] private IceEffect iceEffect = new IceEffect();
 
-		public Image blackScreen;
-
+		[Header("Physics")]
 		public Rigidbody _rigidbody;
 		public Collider _collider;
 
+		[Header("Animation")]
 		public Animator _animator;
+		public float standUpTime = 2.0f;
 		
+		[Header("Navigation")]
 		public NavMeshAgent _navigation;
-
-		public GameObject pauseMenu;
-
-		private bool controllable = true;
-		public void setControllable(bool val) { controllable = val; }
-		public bool getControllable() { return controllable; }
-
-		public float tolDistToDest = 0.2f, tolAngulo = 1, turningSpeed = 0.5f;
+		public float distanceToDestinationTolerance = 0.2f;
 
 		void Awake()
 		{
@@ -333,7 +335,7 @@ namespace FirePlace
 
 			_navigation.SetDestination(targetPos);
 
-			while(Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(targetPos.x, 0, targetPos.z)) > tolDistToDest)
+			while(Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(targetPos.x, 0, targetPos.z)) > distanceToDestinationTolerance)
 				yield return new WaitForFixedUpdate();
 
 			_collider.enabled = true;
@@ -358,19 +360,22 @@ namespace FirePlace
 			while(state == States.Fogueira || state == States.Pausado)
 			{
 
-				if (Input.GetButtonDown("Use") || Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
+				if(state == States.Fogueira)
 				{
-					_animator.SetBool("isSeated", false);
-
-					time = 0;
-					while(time < 1)
+					if (Input.GetButtonDown("Use") || Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
 					{
-						time += Time.deltaTime;	
-						yield return new WaitForEndOfFrame();
+						_animator.SetBool("isSeated", false);
+
+						time = 0;
+						while(time < standUpTime)
+						{
+							time += Time.deltaTime;	
+							yield return new WaitForEndOfFrame();
+						}
+
+						state = States.Default;
+
 					}
-
-					state = States.Default;
-
 				}
 
 				yield return new WaitForEndOfFrame();
@@ -398,7 +403,7 @@ namespace FirePlace
 		{
 
 			_navigation.SetDestination(targetPos);
-			while(Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(targetPos.x, 0, targetPos.z)) > tolDistToDest)
+			while(Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(targetPos.x, 0, targetPos.z)) > distanceToDestinationTolerance)
 				yield return new WaitForFixedUpdate();
 
 			_navigation.isStopped = true;

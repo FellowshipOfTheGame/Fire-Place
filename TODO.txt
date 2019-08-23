@@ -1,11 +1,4 @@
-- Add notes. [x]
-- Add final cutscene. [x]
-- Change Blizzard strenght as Player progresses. [ ]
-- Note scenery.
-|- Car crash. [ ]
-|- Fridge. [x]
-|- Cave blocks. [ ]
-- Fix Player standing up. [ ]
-- Finish camera.
-|- Going through objects on level 3. [ ]
-|- Can see unloaded levels at the end of level 3. [ ]
+- Car crash. [ ]
+- Check camera. []
+- Prevent Player from walking forward if ground is at a certaing angle. [ ]
+- Better break level 3 and F scenery.

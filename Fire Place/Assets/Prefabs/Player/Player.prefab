@@ -82,6 +82,7 @@ MonoBehaviour:
   cameraFollowPoint: {fileID: 8099289434369892947}
   allowDeath: 0
   iceDamageMultiplier: 1
+  standUpTime: 3
   hud:
     parent: {fileID: 1991327956771987728}
     canvasNote: {fileID: 0}
@@ -421,21 +422,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1991327956771987735}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 8865273baf87c5e4990687c634c498ae,
-        type: 3}
-      propertyPath: m_Name
-      value: PrototypeCharacterV1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4224801822505238522, guid: 8865273baf87c5e4990687c634c498ae,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8274873701517981592, guid: 8865273baf87c5e4990687c634c498ae,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8865273baf87c5e4990687c634c498ae,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -489,6 +475,21 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 8865273baf87c5e4990687c634c498ae,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8274873701517981592, guid: 8865273baf87c5e4990687c634c498ae,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 8865273baf87c5e4990687c634c498ae,
+        type: 3}
+      propertyPath: m_Name
+      value: PrototypeCharacterV1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224801822505238522, guid: 8865273baf87c5e4990687c634c498ae,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -6057140222963153312, guid: 8865273baf87c5e4990687c634c498ae,

@@ -1,65 +1,71 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneCheckPoint : MonoBehaviour
+namespace FirePlace.Util
 {
-	public enum Action { Load, Unload };
-	//public enum Tipo { Clique, Colisao };
 
-	//public Tipo tipo = Tipo.Clique;
-	public Action action = Action.Load;
-
-	public bool addictive = true;
-
-	public string sceneName = "";
-
-	private bool after = false;
-
-	void Start ()
+	public class SceneCheckPoint : MonoBehaviour
 	{
+		public enum Action { Load, Unload };
+		//public enum Tipo { Clique, Colisao };
 
-		after = false;
+		//public Tipo tipo = Tipo.Clique;
+		public Action action = Action.Load;
 
-	}
+		public bool addictive = true;
 
-	void OnTriggerEnter(Collider other)
-	{
+		public string sceneName = "";
 
-		if (other.gameObject.tag == "Player")
-		{	
+		private bool after = false;
 
-			if (action == Action.Load) // If the scene has already been loaded unloads the scene.
-			{ 
+		void Start ()
+		{
 
-				if(after)
-					SceneManager.UnloadSceneAsync(sceneName);
-				else
-				{
-					if (!addictive)
-						SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+			after = false;
+
+		}
+
+		void OnTriggerEnter(Collider other)
+		{
+
+			if (other.gameObject.tag == "Player")
+			{	
+
+				if (action == Action.Load) // If the scene has already been loaded unloads the scene.
+				{ 
+
+					if(after)
+						SceneManager.UnloadSceneAsync(sceneName);
 					else
-						SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+					{
+						if (!addictive)
+							SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+						else
+							SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+					}
+
+					after = !after;
+
 				}
-
-				after = !after;
-
-			}
-			else if(action == Action.Unload)
-			{
-				if(after) // If the scene has already been unloaded loads back the scene.
+				else if(action == Action.Unload)
 				{
-					if(!addictive)
-						SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
-					else
-						SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-				} else
-					SceneManager.UnloadSceneAsync(sceneName);
+					if(after) // If the scene has already been unloaded loads back the scene.
+					{
+						if(!addictive)
+							SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+						else
+							SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+					} else
+						SceneManager.UnloadSceneAsync(sceneName);
 
-				after = !after;
+					after = !after;
 
+				}
 			}
 		}
 	}
+
 }
